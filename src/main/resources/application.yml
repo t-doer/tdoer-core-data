@@ -1,0 +1,131 @@
+spring:
+  application:
+    admin:
+      enabled: true
+    name: tdoer-core-coredata
+  datasource:
+    url: jdbc:mysql://47.244.121.219:3306/tdoer_core_data?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: ComeonBaby@1215
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jackson:
+    date-format: yyyy/MM/dd HH:mm:ss
+    time-zone: GMT+8
+  redis:
+    host: 47.244.121.219
+    port: 6379
+    timeout: 1000
+    database: 1
+  ## sleuth and zipkin
+#  sleuth:
+#    sampler:
+#      percentage: 1.0
+#  zipkin:
+#    enabled: true
+#    rabbitmq:
+#      queue: zipkin
+#  ## spring cloud bus,
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: springcloud
+#    password: spring123
+#    virtual-host: /
+## eureka client
+eureka:
+  instance:
+    # hostname: peer1
+    # namespace: enreka
+    appname: ${spring.application.name}
+    prefer-ip-address: true
+    instance-enabled-onit: false
+    ## endpoints
+    home-page-url-path: /
+    health-check-url-path: /management/health
+    status-page-url-path: /management/info
+    ## instance ports open for service consumers
+    # non-secure-port-enabled: true
+    # non-secure-port: 80
+    # secure-port-enabled: false
+    # secure-port: 443
+    ## renew lease
+    lease-expiration-duration-in-seconds: 90
+    lease-renewal-interval-in-seconds: 30
+    metadata-map:
+      user:
+        name: operator
+        password: bboperator!@#
+      management:
+        port: ${management.server.port}
+        context-path: ${management.endpoints.web.base-path}
+
+  client:
+    ## basic
+    enabled: true
+    allow-redirects: false
+#    region: cn-shanghai
+#    availability-zones:
+#      cn-shanghai: cn-shanghai-b,cn-shanghai-c,cn-shanghai-d
+    service-url:
+      defaultZone: http://localhost:7020/eureka/
+    #  cn-shanghai-b: http://${eureka.peer.hostname}:${eureka.peer.port}/eureka/
+
+    ## register the instance
+    register-with-eureka: true
+
+    ## replicate instance info Eureka server
+    initial-instance-info-replication-interval-seconds: 40
+    instance-info-replication-interval-seconds: 30
+    heartbeat-executor-exponential-back-off-bound: 10
+    heartbeat-executor-thread-pool-size: 2
+    on-demand-update-status-change: true
+
+    ## fetch
+    fetch-registry: true
+    # fetch-remote-regions-registry: cn-shanghai
+    prefer-same-zone-eureka: true
+    filter-only-up-instances: true
+    g-zip-content: true
+    disable-delta: false
+    registry-fetch-interval-seconds: 30
+    use-dns-for-fetching-service-urls: false
+    cache-refresh-executor-thread-pool-size: 2
+    cache-refresh-executor-exponential-back-off-bound: 10
+
+
+    ## connections and timeouts
+    eureka-server-total-connections: 200
+    eureka-server-total-connections-per-host: 50
+    eureka-connection-idle-timeout-seconds: 30
+    eureka-server-connect-timeout-seconds: 5
+    eureka-server-read-timeout-seconds: 8
+
+    ## log
+    log-delta-diff: false
+
+server:
+  port: ${port:7090}
+
+## management
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    enabled-by-default: true
+    web:
+      base-path: /management
+      exposure:
+        include: "*"
+        exclude: "shutdown"
+    jmx:
+      exposure:
+        include: "*"
+  server:
+    port: ${mgmt-port:7091}
+
+mybatis:
+    mapper-locations: classpath:mybatis/*/*/*.xml
+

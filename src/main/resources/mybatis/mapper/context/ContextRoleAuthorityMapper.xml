@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tdoer.coredata.framework.mapper.context.ContextRoleAuthorityMapper">
+  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.obj.context.ContextRoleAuthorityObj">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="ROLE_ID" jdbcType="BIGINT" property="roleId" />
+    <result column="RESOURCE_ID" jdbcType="BIGINT" property="resourceId" />
+    <result column="RESOURCE_TYPE" jdbcType="VARCHAR" property="resourceType" />
+    <result column="ENABLED" jdbcType="CHAR" property="enabled" />
+    <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+    <result column="CREATED_AT" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="UPDATED_BY" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="UPDATED_AT" jdbcType="TIMESTAMP" property="updatedAt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ROLE_ID, RESOURCE_ID, RESOURCE_TYPE, ENABLED, CREATED_BY, CREATED_AT, UPDATED_BY, 
+    UPDATED_AT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fw_context_role_authority
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from fw_context_role_authority
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.context.ContextRoleAuthorityObj" useGeneratedKeys="true">
+    insert into fw_context_role_authority (ROLE_ID, RESOURCE_ID, RESOURCE_TYPE, 
+      ENABLED, CREATED_BY, CREATED_AT, 
+      UPDATED_BY, UPDATED_AT)
+    values (#{roleId,jdbcType=BIGINT}, #{resourceId,jdbcType=BIGINT}, #{resourceType,jdbcType=VARCHAR}, 
+      #{enabled,jdbcType=CHAR}, #{createdBy,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updatedBy,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.context.ContextRoleAuthorityObj" useGeneratedKeys="true">
+    insert into fw_context_role_authority
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        ROLE_ID,
+      </if>
+      <if test="resourceId != null">
+        RESOURCE_ID,
+      </if>
+      <if test="resourceType != null">
+        RESOURCE_TYPE,
+      </if>
+      <if test="enabled != null">
+        ENABLED,
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY,
+      </if>
+      <if test="createdAt != null">
+        CREATED_AT,
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY,
+      </if>
+      <if test="updatedAt != null">
+        UPDATED_AT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="resourceId != null">
+        #{resourceId,jdbcType=BIGINT},
+      </if>
+      <if test="resourceType != null">
+        #{resourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null">
+        #{enabled,jdbcType=CHAR},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.obj.context.ContextRoleAuthorityObj">
+    update fw_context_role_authority
+    <set>
+      <if test="roleId != null">
+        ROLE_ID = #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="resourceId != null">
+        RESOURCE_ID = #{resourceId,jdbcType=BIGINT},
+      </if>
+      <if test="resourceType != null">
+        RESOURCE_TYPE = #{resourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null">
+        ENABLED = #{enabled,jdbcType=CHAR},
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedAt != null">
+        UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.obj.context.ContextRoleAuthorityObj">
+    update fw_context_role_authority
+    set ROLE_ID = #{roleId,jdbcType=BIGINT},
+      RESOURCE_ID = #{resourceId,jdbcType=BIGINT},
+      RESOURCE_TYPE = #{resourceType,jdbcType=VARCHAR},
+      ENABLED = #{enabled,jdbcType=CHAR},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

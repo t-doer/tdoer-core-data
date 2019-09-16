@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+
+
+    <!--指定特定数据库的jdbc驱动jar包的位置-->
+    <classPathEntry location="/home/hlk/.m2/repository/mysql/mysql-connector-java/5.1.46/mysql-connector-java-5.1.46.jar"/>
+    <classPathEntry location="/home/hlk/.m2/repository/com/tdoer/tdoer-bedrock-impl/1.0.0-RELEASE/tdoer-bedrock-impl-1.0.0-RELEASE.jar"/>
+
+    <context id="default" targetRuntime="MyBatis3">
+        <!--<plugin type="com.rongyi.framework.mybatis.generator.EntityCommentPlugin"></plugin>-->
+        <!-- 		<plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin"></plugin>   -->
+        <!--         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin> -->
+        <!-- 		<plugin type="com.rongyi.framework.mybatis.plugins.OraclePaginationPlugin"/> -->
+        <!-- 		<plugin type="com.rongyi.framework.mybatis.plugins.EntityExtraMethodPlugin"/> -->
+
+        <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!-- 数据库连接信息 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.15.8:3306/data_core?useUnicode=true" userId="bbadmin" password="Funtrip2018!@#"/>
+        <!-- 配置model生成目录和其它参数 -->
+        <javaModelGenerator targetPackage="com.tdoer.coredata.framework.obj" targetProject="src/main/java">
+            <!-- <property name="rootClass" value="com.rongyi.merchant.biz.domain.BaseEntity"/> -->
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <!-- 配置mapper生成目录和其它参数 -->
+        <sqlMapGenerator targetPackage="mybatis.mapper" targetProject="src/main/resources"/>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.tdoer.coredata.framework.mapper" targetProject="src/main/java">
+            <!-- 			<property name="rootInterface" value="com.rongyi.merchant.biz.mapper.BaseMapper"/> -->
+        </javaClientGenerator>
+        <!-- Service Domain -->
+        <table tableName="fw_service" domainObjectName="service.ServiceObj" mapperName="service.ServiceMapper"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="rootClass" value="com.tdoer.bedrock.impl.definition.service.ServiceDefinition"/>
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="fw_service_method" domainObjectName="service.ServiceMethodObj" mapperName="service.ServiceMethodMapper"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="rootClass" value="com.tdoer.bedrock.impl.definition.service.ServiceMethodDefinition"/>
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <!-- Application Domain -->
+        <table tableName="fw_application" domainObjectName="application.ApplicationObj" mapperName="application.ApplicationMapper"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="rootClass" value="com.tdoer.bedrock.impl.definition.application.ApplicationDefinition"/>
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="fw_page" domainObjectName="application.PageObj" mapperName="application.PageMapper"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="rootClass" value="com.tdoer.bedrock.impl.definition.application.PageDefinition"/>
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="fw_page_method" domainObjectName="application.PageMethodObj" mapperName="application.PageMethodMapper"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="rootClass" value="com.tdoer.bedrock.impl.definition.application.PageMethodDefinition"/>
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="fw_action" domainObjectName="application.ActionObj" mapperName="application.ActionMapper"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="rootClass" value="com.tdoer.bedrock.impl.definition.application.ActionDefinition"/>
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="fw_action_method" domainObjectName="application.ActionMethodObj" mapperName="application.ActionMethodMapper"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="rootClass" value="com.tdoer.bedrock.impl.definition.application.ActionMethodDefinition"/>
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="fw_application_service" domainObjectName="application.ApplicationServiceObj" mapperName="application.ApplicationServiceMapper"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="rootClass" value="com.tdoer.bedrock.impl.definition.application.ApplicationServiceDefinition"/>
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <!-- Product Domain -->
+        <table tableName="fw_product" domainObjectName="product.ProductObj" mapperName="product.ProductMapper"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="rootClass" value="com.tdoer.bedrock.impl.definition.product.ProductDefinition"/>
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="fw_client" domainObjectName="product.ClientObj" mapperName="product.ClientMapper"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="rootClass" value="com.tdoer.bedrock.impl.definition.product.ClientDefinition"/>
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="fw_client_application" domainObjectName="product.ClientApplicationObj" mapperName="product.ClientApplicationMapper"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="rootClass" value="com.tdoer.bedrock.impl.definition.product.ClientApplicationDefinition"/>
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="fw_client_context" domainObjectName="product.ClientContextObj" mapperName="product.ClientContextMapper"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="rootClass" value="com.tdoer.bedrock.impl.definition.product.ClientContextDefinition"/>
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="fw_client_navigation_item" domainObjectName="product.NavigationItemObj" mapperName="product.NavigationItemMapper"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="fw_client_service" domainObjectName="product.ClientServiceObj" mapperName="product.ClientServiceMapper"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="rootClass" value="com.tdoer.bedrock.impl.definition.product.ClientServiceDefinition"/>
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="fw_client_token" domainObjectName="product.ClientTokenObj" mapperName="product.ClientTokenMapper"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="rootClass" value="com.tdoer.bedrock.impl.definition.product.ClientTokenDefinition"/>
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="fw_context_application" domainObjectName="context.ContextApplicationObj" mapperName="context.ContextApplicationMapper"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="rootClass" value="com.tdoer.bedrock.impl.definition.context.ContextApplicationDefinition"/>
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="fw_context_role" domainObjectName="context.ContextRoleObj" mapperName="context.ContextRoleMapper"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="rootClass" value="com.tdoer.bedrock.impl.definition.context.ContextRoleDefinition"/>
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="fw_context_role_authority" domainObjectName="context.ContextRoleAuthorityObj" mapperName="context.ContextRoleAuthorityMapper"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="rootClass" value="com.tdoer.bedrock.impl.definition.context.ContextRoleAuthorityDefinition"/>
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="fw_context_type" domainObjectName="context.ContextTypeObj" mapperName="context.ContextTypeMapper"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="rootClass" value="com.tdoer.bedrock.impl.definition.context.ContextTypeDefinition"/>
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="type" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="fw_tenant" domainObjectName="tenant.TenantObj" mapperName="tenant.TenantMapper"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="rootClass" value="com.tdoer.bedrock.impl.definition.tenant.TenantDefinition"/>
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="fw_tenant_client" domainObjectName="tenant.TenantClientObj" mapperName="tenant.TenantClientMapper"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="rootClass" value="com.tdoer.bedrock.impl.definition.tenant.TenantClientDefinition"/>
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="fw_tenant_product" domainObjectName="tenant.TenantProductObj" mapperName="tenant.TenantProductMapper"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="rootClass" value="com.tdoer.bedrock.impl.definition.tenant.TenantProductDefinition"/>
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="user" domainObjectName="tenant.UserObj" mapperName="tenant.UserMapper"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false" >
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="organization" domainObjectName="tenant.OrganizationObj" mapperName="tenant.OrganizationMapper"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false" >
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="organization_member" domainObjectName="tenant.OrganizationMemberObj" mapperName="tenant.OrganizationMemberMapper"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false" >
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="organization_member_role" domainObjectName="tenant.OrganizationMemberRoleObj" mapperName="tenant.OrganizationMemberRoleMapper"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false" >
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+    </context>
+</generatorConfiguration>
