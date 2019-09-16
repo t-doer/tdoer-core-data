@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tdoer.coredata.framework.mapper.product.ClientMapper">
+  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.obj.product.ClientObj">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="PRODUCT_ID" jdbcType="VARCHAR" property="productId" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="CATEGORY" jdbcType="VARCHAR" property="category" />
+    <result column="SECRET" jdbcType="VARCHAR" property="secret" />
+    <result column="GRANT_TYPES" jdbcType="VARCHAR" property="grantTypes" />
+    <result column="SCOPES" jdbcType="VARCHAR" property="scopes" />
+    <result column="AUTHORITIES" jdbcType="VARCHAR" property="authorities" />
+    <result column="TRUSTED" jdbcType="CHAR" property="trusted" />
+    <result column="AUTO_APPROVALS" jdbcType="VARCHAR" property="autoApprovals" />
+    <result column="ENABLED" jdbcType="VARCHAR" property="enabled" />
+    <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+    <result column="CREATED_AT" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="UPDATED_BY" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="UPDATED_AT" jdbcType="TIMESTAMP" property="updatedAt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PRODUCT_ID, NAME, CATEGORY, SECRET, GRANT_TYPES, SCOPES, AUTHORITIES, TRUSTED, 
+    AUTO_APPROVALS, ENABLED, CREATED_BY, CREATED_AT, UPDATED_BY, UPDATED_AT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fw_client
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from fw_client
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.product.ClientObj" useGeneratedKeys="true">
+    insert into fw_client (PRODUCT_ID, NAME, CATEGORY, 
+      SECRET, GRANT_TYPES, SCOPES, 
+      AUTHORITIES, TRUSTED, AUTO_APPROVALS, 
+      ENABLED, CREATED_BY, CREATED_AT, 
+      UPDATED_BY, UPDATED_AT)
+    values (#{productId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, 
+      #{secret,jdbcType=VARCHAR}, #{grantTypes,jdbcType=VARCHAR}, #{scopes,jdbcType=VARCHAR}, 
+      #{authorities,jdbcType=VARCHAR}, #{trusted,jdbcType=CHAR}, #{autoApprovals,jdbcType=VARCHAR}, 
+      #{enabled,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updatedBy,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.product.ClientObj" useGeneratedKeys="true">
+    insert into fw_client
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        PRODUCT_ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="category != null">
+        CATEGORY,
+      </if>
+      <if test="secret != null">
+        SECRET,
+      </if>
+      <if test="grantTypes != null">
+        GRANT_TYPES,
+      </if>
+      <if test="scopes != null">
+        SCOPES,
+      </if>
+      <if test="authorities != null">
+        AUTHORITIES,
+      </if>
+      <if test="trusted != null">
+        TRUSTED,
+      </if>
+      <if test="autoApprovals != null">
+        AUTO_APPROVALS,
+      </if>
+      <if test="enabled != null">
+        ENABLED,
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY,
+      </if>
+      <if test="createdAt != null">
+        CREATED_AT,
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY,
+      </if>
+      <if test="updatedAt != null">
+        UPDATED_AT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="secret != null">
+        #{secret,jdbcType=VARCHAR},
+      </if>
+      <if test="grantTypes != null">
+        #{grantTypes,jdbcType=VARCHAR},
+      </if>
+      <if test="scopes != null">
+        #{scopes,jdbcType=VARCHAR},
+      </if>
+      <if test="authorities != null">
+        #{authorities,jdbcType=VARCHAR},
+      </if>
+      <if test="trusted != null">
+        #{trusted,jdbcType=CHAR},
+      </if>
+      <if test="autoApprovals != null">
+        #{autoApprovals,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null">
+        #{enabled,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.obj.product.ClientObj">
+    update fw_client
+    <set>
+      <if test="productId != null">
+        PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        CATEGORY = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="secret != null">
+        SECRET = #{secret,jdbcType=VARCHAR},
+      </if>
+      <if test="grantTypes != null">
+        GRANT_TYPES = #{grantTypes,jdbcType=VARCHAR},
+      </if>
+      <if test="scopes != null">
+        SCOPES = #{scopes,jdbcType=VARCHAR},
+      </if>
+      <if test="authorities != null">
+        AUTHORITIES = #{authorities,jdbcType=VARCHAR},
+      </if>
+      <if test="trusted != null">
+        TRUSTED = #{trusted,jdbcType=CHAR},
+      </if>
+      <if test="autoApprovals != null">
+        AUTO_APPROVALS = #{autoApprovals,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null">
+        ENABLED = #{enabled,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedAt != null">
+        UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.obj.product.ClientObj">
+    update fw_client
+    set PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      CATEGORY = #{category,jdbcType=VARCHAR},
+      SECRET = #{secret,jdbcType=VARCHAR},
+      GRANT_TYPES = #{grantTypes,jdbcType=VARCHAR},
+      SCOPES = #{scopes,jdbcType=VARCHAR},
+      AUTHORITIES = #{authorities,jdbcType=VARCHAR},
+      TRUSTED = #{trusted,jdbcType=CHAR},
+      AUTO_APPROVALS = #{autoApprovals,jdbcType=VARCHAR},
+      ENABLED = #{enabled,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
