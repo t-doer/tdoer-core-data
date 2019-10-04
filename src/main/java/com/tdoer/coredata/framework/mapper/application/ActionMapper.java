@@ -1,17 +1,17 @@
 package com.tdoer.coredata.framework.mapper.application;
 
-import com.tdoer.coredata.framework.obj.application.ActionObj;
+import com.tdoer.coredata.framework.eo.application.ActionEO;
 
 public interface ActionMapper {
     int deleteByPrimaryKey(Long id);
 
-    int insert(ActionObj record);
+    int insert(ActionEO record);
 
-    int insertSelective(ActionObj record);
+    int insertSelective(ActionEO record);
 
-    ActionObj selectByPrimaryKey(Long id);
+    ActionEO selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(ActionObj record);
+    int updateByPrimaryKeySelective(ActionEO record);
 
-    int updateByPrimaryKey(ActionObj record);
+    int updateByPrimaryKey(ActionEO record);
 }

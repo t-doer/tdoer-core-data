@@ -1,17 +1,17 @@
 package com.tdoer.coredata.framework.mapper.tenant;
 
-import com.tdoer.coredata.framework.obj.tenant.TenantObj;
+import com.tdoer.coredata.framework.eo.tenant.TenantEO;
 
 public interface TenantMapper {
     int deleteByPrimaryKey(Long id);
 
-    int insert(TenantObj record);
+    int insert(TenantEO record);
 
-    int insertSelective(TenantObj record);
+    int insertSelective(TenantEO record);
 
-    TenantObj selectByPrimaryKey(Long id);
+    TenantEO selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(TenantObj record);
+    int updateByPrimaryKeySelective(TenantEO record);
 
-    int updateByPrimaryKey(TenantObj record);
+    int updateByPrimaryKey(TenantEO record);
 }

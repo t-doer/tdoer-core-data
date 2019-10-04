@@ -1,17 +1,17 @@
 package com.tdoer.coredata.framework.mapper.application;
 
-import com.tdoer.coredata.framework.obj.application.PageMethodObj;
+import com.tdoer.coredata.framework.eo.application.PageMethodEO;
 
 public interface PageMethodMapper {
     int deleteByPrimaryKey(Long id);
 
-    int insert(PageMethodObj record);
+    int insert(PageMethodEO record);
 
-    int insertSelective(PageMethodObj record);
+    int insertSelective(PageMethodEO record);
 
-    PageMethodObj selectByPrimaryKey(Long id);
+    PageMethodEO selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(PageMethodObj record);
+    int updateByPrimaryKeySelective(PageMethodEO record);
 
-    int updateByPrimaryKey(PageMethodObj record);
+    int updateByPrimaryKey(PageMethodEO record);
 }

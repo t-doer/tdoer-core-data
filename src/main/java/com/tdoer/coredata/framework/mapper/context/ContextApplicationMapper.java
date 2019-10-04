@@ -1,17 +1,17 @@
 package com.tdoer.coredata.framework.mapper.context;
 
-import com.tdoer.coredata.framework.obj.context.ContextApplicationObj;
+import com.tdoer.coredata.framework.eo.context.ContextApplicationEO;
 
 public interface ContextApplicationMapper {
     int deleteByPrimaryKey(Long id);
 
-    int insert(ContextApplicationObj record);
+    int insert(ContextApplicationEO record);
 
-    int insertSelective(ContextApplicationObj record);
+    int insertSelective(ContextApplicationEO record);
 
-    ContextApplicationObj selectByPrimaryKey(Long id);
+    ContextApplicationEO selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(ContextApplicationObj record);
+    int updateByPrimaryKeySelective(ContextApplicationEO record);
 
-    int updateByPrimaryKey(ContextApplicationObj record);
+    int updateByPrimaryKey(ContextApplicationEO record);
 }

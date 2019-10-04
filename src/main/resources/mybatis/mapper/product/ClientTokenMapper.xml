@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tdoer.coredata.framework.mapper.product.ClientTokenMapper">
-  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.obj.product.ClientTokenObj">
+  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.eo.product.ClientTokenEO">
     <id column="ID" jdbcType="BIGINT" property="id" />
     <result column="CLIENT_ID" jdbcType="VARCHAR" property="clientId" />
     <result column="TENANT_ID" jdbcType="BIGINT" property="tenantId" />
@@ -29,7 +29,7 @@
     delete from fw_client_token
     where ID = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.product.ClientTokenObj" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.product.ClientTokenEO" useGeneratedKeys="true">
     insert into fw_client_token (CLIENT_ID, TENANT_ID, WEB_REDIRECT_URI, 
       ACCESS_TOKEN_VALIDITY, REFRESH_TOKEN_VALIDITY, 
       SESSION_POLICY, ENABLED, CREATED_BY, 
@@ -41,7 +41,7 @@
       #{createdAt,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.product.ClientTokenObj" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.product.ClientTokenEO" useGeneratedKeys="true">
     insert into fw_client_token
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="clientId != null">
@@ -114,7 +114,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.obj.product.ClientTokenObj">
+  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.eo.product.ClientTokenEO">
     update fw_client_token
     <set>
       <if test="clientId != null">
@@ -153,7 +153,7 @@
     </set>
     where ID = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.obj.product.ClientTokenObj">
+  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.eo.product.ClientTokenEO">
     update fw_client_token
     set CLIENT_ID = #{clientId,jdbcType=VARCHAR},
       TENANT_ID = #{tenantId,jdbcType=BIGINT},

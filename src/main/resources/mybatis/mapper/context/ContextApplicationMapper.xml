@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tdoer.coredata.framework.mapper.context.ContextApplicationMapper">
-  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.obj.context.ContextApplicationObj">
+  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.eo.context.ContextApplicationEO">
     <id column="ID" jdbcType="BIGINT" property="id" />
     <result column="CONTEXT_PATH" jdbcType="VARCHAR" property="contextPath" />
     <result column="APPLICATION_ID" jdbcType="VARCHAR" property="applicationId" />
@@ -28,7 +28,7 @@
     delete from fw_context_application
     where ID = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.context.ContextApplicationObj" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.context.ContextApplicationEO" useGeneratedKeys="true">
     insert into fw_context_application (CONTEXT_PATH, APPLICATION_ID, PRODUCT_ID, 
       CLIENT_ID, TENANT_ID, ENABLED, 
       CREATED_BY, CREATED_AT, UPDATED_BY, 
@@ -38,7 +38,7 @@
       #{createdBy,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, 
       #{updatedAt,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.context.ContextApplicationObj" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.context.ContextApplicationEO" useGeneratedKeys="true">
     insert into fw_context_application
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="contextPath != null">
@@ -105,7 +105,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.obj.context.ContextApplicationObj">
+  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.eo.context.ContextApplicationEO">
     update fw_context_application
     <set>
       <if test="contextPath != null">
@@ -141,7 +141,7 @@
     </set>
     where ID = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.obj.context.ContextApplicationObj">
+  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.eo.context.ContextApplicationEO">
     update fw_context_application
     set CONTEXT_PATH = #{contextPath,jdbcType=VARCHAR},
       APPLICATION_ID = #{applicationId,jdbcType=VARCHAR},

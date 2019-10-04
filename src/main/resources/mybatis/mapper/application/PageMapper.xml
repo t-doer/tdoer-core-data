@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tdoer.coredata.framework.mapper.application.PageMapper">
-  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.obj.application.PageObj">
+  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.eo.application.PageEO">
     <id column="ID" jdbcType="BIGINT" property="id" />
     <result column="NAME" jdbcType="VARCHAR" property="name" />
     <result column="CODE" jdbcType="VARCHAR" property="code" />
@@ -30,7 +30,7 @@
     delete from fw_page
     where ID = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.application.PageObj" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.application.PageEO" useGeneratedKeys="true">
     insert into fw_page (NAME, CODE, APPLICATION_ID, 
       PRODUCT_ID, CLIENT_ID, TENANT_ID, 
       CONTEXT_PATH, ENABLED, CREATED_BY, 
@@ -42,7 +42,7 @@
       #{createdAt,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.application.PageObj" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.application.PageEO" useGeneratedKeys="true">
     insert into fw_page
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="name != null">
@@ -121,7 +121,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.obj.application.PageObj">
+  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.eo.application.PageEO">
     update fw_page
     <set>
       <if test="name != null">
@@ -163,7 +163,7 @@
     </set>
     where ID = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.obj.application.PageObj">
+  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.eo.application.PageEO">
     update fw_page
     set NAME = #{name,jdbcType=VARCHAR},
       CODE = #{code,jdbcType=VARCHAR},

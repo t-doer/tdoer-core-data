@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tdoer.coredata.framework.mapper.product.NavigationItemMapper">
-  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.obj.product.NavigationItemObj">
+  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.eo.product.NavigationItemEO">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="client_id" jdbcType="VARCHAR" property="clientId" />
     <result column="context_path" jdbcType="VARCHAR" property="contextPath" />
@@ -42,7 +42,7 @@
     delete from fw_client_navigation_item
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.product.NavigationItemObj" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.product.NavigationItemEO" useGeneratedKeys="true">
     insert into fw_client_navigation_item (client_id, context_path, tenant_id, 
       node_id, parent_id, sequence, 
       name, type, anchor, 
@@ -60,7 +60,7 @@
       #{enabled,jdbcType=CHAR}, #{createdBy,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
       #{updatedBy,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.product.NavigationItemObj" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.product.NavigationItemEO" useGeneratedKeys="true">
     insert into fw_client_navigation_item
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="clientId != null">
@@ -205,7 +205,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.obj.product.NavigationItemObj">
+  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.eo.product.NavigationItemEO">
     update fw_client_navigation_item
     <set>
       <if test="clientId != null">
@@ -280,7 +280,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.obj.product.NavigationItemObj">
+  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.eo.product.NavigationItemEO">
     update fw_client_navigation_item
     set client_id = #{clientId,jdbcType=VARCHAR},
       context_path = #{contextPath,jdbcType=VARCHAR},

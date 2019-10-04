@@ -1,17 +1,17 @@
 package com.tdoer.coredata.framework.mapper.product;
 
-import com.tdoer.coredata.framework.obj.product.ClientContextObj;
+import com.tdoer.coredata.framework.eo.product.ClientContextEO;
 
 public interface ClientContextMapper {
     int deleteByPrimaryKey(Long id);
 
-    int insert(ClientContextObj record);
+    int insert(ClientContextEO record);
 
-    int insertSelective(ClientContextObj record);
+    int insertSelective(ClientContextEO record);
 
-    ClientContextObj selectByPrimaryKey(Long id);
+    ClientContextEO selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(ClientContextObj record);
+    int updateByPrimaryKeySelective(ClientContextEO record);
 
-    int updateByPrimaryKey(ClientContextObj record);
+    int updateByPrimaryKey(ClientContextEO record);
 }

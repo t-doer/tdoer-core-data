@@ -1,17 +1,17 @@
 package com.tdoer.coredata.framework.mapper.context;
 
-import com.tdoer.coredata.framework.obj.context.ContextRoleAuthorityObj;
+import com.tdoer.coredata.framework.eo.context.ContextRoleAuthorityEO;
 
 public interface ContextRoleAuthorityMapper {
     int deleteByPrimaryKey(Long id);
 
-    int insert(ContextRoleAuthorityObj record);
+    int insert(ContextRoleAuthorityEO record);
 
-    int insertSelective(ContextRoleAuthorityObj record);
+    int insertSelective(ContextRoleAuthorityEO record);
 
-    ContextRoleAuthorityObj selectByPrimaryKey(Long id);
+    ContextRoleAuthorityEO selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(ContextRoleAuthorityObj record);
+    int updateByPrimaryKeySelective(ContextRoleAuthorityEO record);
 
-    int updateByPrimaryKey(ContextRoleAuthorityObj record);
+    int updateByPrimaryKey(ContextRoleAuthorityEO record);
 }

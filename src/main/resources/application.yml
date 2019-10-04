@@ -4,9 +4,9 @@ spring:
       enabled: true
     name: tdoer-core-coredata
   datasource:
-    url: jdbc:mysql://47.244.121.219:3306/tdoer_core_data?useUnicode=true&characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://localhost:3306/tdoer_core_data?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
-    password: ComeonBaby@1215
+    password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
   jackson:
     date-format: yyyy/MM/dd HH:mm:ss

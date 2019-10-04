@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tdoer.coredata.framework.mapper.product.ClientMapper">
-  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.obj.product.ClientObj">
+  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.eo.product.ClientEO">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="PRODUCT_ID" jdbcType="VARCHAR" property="productId" />
     <result column="NAME" jdbcType="VARCHAR" property="name" />
@@ -32,7 +32,7 @@
     delete from fw_client
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.product.ClientObj" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.product.ClientEO" useGeneratedKeys="true">
     insert into fw_client (PRODUCT_ID, NAME, CATEGORY, 
       SECRET, GRANT_TYPES, SCOPES, 
       AUTHORITIES, TRUSTED, AUTO_APPROVALS, 
@@ -44,7 +44,7 @@
       #{enabled,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
       #{updatedBy,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.product.ClientObj" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.product.ClientEO" useGeneratedKeys="true">
     insert into fw_client
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="productId != null">
@@ -135,7 +135,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.obj.product.ClientObj">
+  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.eo.product.ClientEO">
     update fw_client
     <set>
       <if test="productId != null">
@@ -183,7 +183,7 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.obj.product.ClientObj">
+  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.eo.product.ClientEO">
     update fw_client
     set PRODUCT_ID = #{productId,jdbcType=VARCHAR},
       NAME = #{name,jdbcType=VARCHAR},

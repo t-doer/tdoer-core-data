@@ -1,17 +1,17 @@
 package com.tdoer.coredata.framework.mapper.product;
 
-import com.tdoer.coredata.framework.obj.product.NavigationItemObj;
+import com.tdoer.coredata.framework.eo.product.NavigationItemEO;
 
 public interface NavigationItemMapper {
     int deleteByPrimaryKey(Long id);
 
-    int insert(NavigationItemObj record);
+    int insert(NavigationItemEO record);
 
-    int insertSelective(NavigationItemObj record);
+    int insertSelective(NavigationItemEO record);
 
-    NavigationItemObj selectByPrimaryKey(Long id);
+    NavigationItemEO selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(NavigationItemObj record);
+    int updateByPrimaryKeySelective(NavigationItemEO record);
 
-    int updateByPrimaryKey(NavigationItemObj record);
+    int updateByPrimaryKey(NavigationItemEO record);
 }

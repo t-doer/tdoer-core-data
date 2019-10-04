@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tdoer.coredata.framework.mapper.tenant.OrganizationMemberRoleMapper">
-  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.obj.tenant.OrganizationMemberRoleObj">
+  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.eo.tenant.OrganizationMemberRoleEO">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="tenant_id" jdbcType="BIGINT" property="tenantId" />
     <result column="org_id" jdbcType="BIGINT" property="orgId" />
@@ -25,7 +25,7 @@
     delete from organization_member_role
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.tenant.OrganizationMemberRoleObj" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.tenant.OrganizationMemberRoleEO" useGeneratedKeys="true">
     insert into organization_member_role (tenant_id, org_id, user_id, 
       role_id, CREATED_BY, CREATED_AT, 
       UPDATED_BY, UPDATED_AT)
@@ -33,7 +33,7 @@
       #{roleId,jdbcType=BIGINT}, #{createdBy,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
       #{updatedBy,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.tenant.OrganizationMemberRoleObj" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.tenant.OrganizationMemberRoleEO" useGeneratedKeys="true">
     insert into organization_member_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="tenantId != null">
@@ -88,7 +88,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.obj.tenant.OrganizationMemberRoleObj">
+  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.eo.tenant.OrganizationMemberRoleEO">
     update organization_member_role
     <set>
       <if test="tenantId != null">
@@ -118,7 +118,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.obj.tenant.OrganizationMemberRoleObj">
+  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.eo.tenant.OrganizationMemberRoleEO">
     update organization_member_role
     set tenant_id = #{tenantId,jdbcType=BIGINT},
       org_id = #{orgId,jdbcType=BIGINT},

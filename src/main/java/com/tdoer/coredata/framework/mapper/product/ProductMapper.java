@@ -1,17 +1,17 @@
 package com.tdoer.coredata.framework.mapper.product;
 
-import com.tdoer.coredata.framework.obj.product.ProductObj;
+import com.tdoer.coredata.framework.eo.product.ProductEO;
 
 public interface ProductMapper {
     int deleteByPrimaryKey(String id);
 
-    int insert(ProductObj record);
+    int insert(ProductEO record);
 
-    int insertSelective(ProductObj record);
+    int insertSelective(ProductEO record);
 
-    ProductObj selectByPrimaryKey(String id);
+    ProductEO selectByPrimaryKey(String id);
 
-    int updateByPrimaryKeySelective(ProductObj record);
+    int updateByPrimaryKeySelective(ProductEO record);
 
-    int updateByPrimaryKey(ProductObj record);
+    int updateByPrimaryKey(ProductEO record);
 }

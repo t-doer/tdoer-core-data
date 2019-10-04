@@ -1,17 +1,17 @@
 package com.tdoer.coredata.framework.mapper.product;
 
-import com.tdoer.coredata.framework.obj.product.ClientServiceObj;
+import com.tdoer.coredata.framework.eo.product.ClientServiceEO;
 
 public interface ClientServiceMapper {
     int deleteByPrimaryKey(Long id);
 
-    int insert(ClientServiceObj record);
+    int insert(ClientServiceEO record);
 
-    int insertSelective(ClientServiceObj record);
+    int insertSelective(ClientServiceEO record);
 
-    ClientServiceObj selectByPrimaryKey(Long id);
+    ClientServiceEO selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(ClientServiceObj record);
+    int updateByPrimaryKeySelective(ClientServiceEO record);
 
-    int updateByPrimaryKey(ClientServiceObj record);
+    int updateByPrimaryKey(ClientServiceEO record);
 }
