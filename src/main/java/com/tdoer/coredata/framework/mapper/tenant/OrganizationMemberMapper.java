@@ -1,17 +1,17 @@
 package com.tdoer.coredata.framework.mapper.tenant;
 
-import com.tdoer.coredata.framework.obj.tenant.OrganizationMemberObj;
+import com.tdoer.coredata.framework.eo.tenant.OrganizationMemberEO;
 
 public interface OrganizationMemberMapper {
     int deleteByPrimaryKey(Long id);
 
-    int insert(OrganizationMemberObj record);
+    int insert(OrganizationMemberEO record);
 
-    int insertSelective(OrganizationMemberObj record);
+    int insertSelective(OrganizationMemberEO record);
 
-    OrganizationMemberObj selectByPrimaryKey(Long id);
+    OrganizationMemberEO selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(OrganizationMemberObj record);
+    int updateByPrimaryKeySelective(OrganizationMemberEO record);
 
-    int updateByPrimaryKey(OrganizationMemberObj record);
+    int updateByPrimaryKey(OrganizationMemberEO record);
 }

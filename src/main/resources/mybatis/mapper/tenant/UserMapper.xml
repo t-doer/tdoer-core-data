@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tdoer.coredata.framework.mapper.tenant.UserMapper">
-  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.obj.tenant.UserObj">
+  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.eo.tenant.UserEO">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="tenant_id" jdbcType="BIGINT" property="tenantId" />
     <result column="account" jdbcType="VARCHAR" property="account" />
@@ -31,7 +31,7 @@
     delete from user
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.tenant.UserObj" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.tenant.UserEO" useGeneratedKeys="true">
     insert into user (tenant_id, account, password, 
       name, phone, email, 
       status, remark, deleted, 
@@ -43,7 +43,7 @@
       #{createdBy,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, 
       #{updatedAt,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.tenant.UserObj" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.tenant.UserEO" useGeneratedKeys="true">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="tenantId != null">
@@ -128,7 +128,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.obj.tenant.UserObj">
+  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.eo.tenant.UserEO">
     update user
     <set>
       <if test="tenantId != null">
@@ -173,7 +173,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.obj.tenant.UserObj">
+  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.eo.tenant.UserEO">
     update user
     set tenant_id = #{tenantId,jdbcType=BIGINT},
       account = #{account,jdbcType=VARCHAR},

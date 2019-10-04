@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tdoer.coredata.framework.mapper.application.PageMethodMapper">
-  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.obj.application.PageMethodObj">
+  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.eo.application.PageMethodEO">
     <id column="ID" jdbcType="BIGINT" property="id" />
     <result column="PAGE_ID" jdbcType="BIGINT" property="pageId" />
     <result column="METHOD_ID" jdbcType="BIGINT" property="methodId" />
@@ -23,7 +23,7 @@
     delete from fw_page_method
     where ID = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.application.PageMethodObj" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.application.PageMethodEO" useGeneratedKeys="true">
     insert into fw_page_method (PAGE_ID, METHOD_ID, CREATED_BY, 
       CREATED_AT, UPDATED_BY, UPDATED_AT
       )
@@ -31,7 +31,7 @@
       #{createdAt,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.application.PageMethodObj" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.application.PageMethodEO" useGeneratedKeys="true">
     insert into fw_page_method
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="pageId != null">
@@ -74,7 +74,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.obj.application.PageMethodObj">
+  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.eo.application.PageMethodEO">
     update fw_page_method
     <set>
       <if test="pageId != null">
@@ -98,7 +98,7 @@
     </set>
     where ID = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.obj.application.PageMethodObj">
+  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.eo.application.PageMethodEO">
     update fw_page_method
     set PAGE_ID = #{pageId,jdbcType=BIGINT},
       METHOD_ID = #{methodId,jdbcType=BIGINT},

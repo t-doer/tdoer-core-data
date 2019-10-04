@@ -1,17 +1,17 @@
 package com.tdoer.coredata.framework.mapper.service;
 
-import com.tdoer.coredata.framework.obj.service.ServiceMethodObj;
+import com.tdoer.coredata.framework.eo.service.ServiceMethodEO;
 
 public interface ServiceMethodMapper {
     int deleteByPrimaryKey(Long id);
 
-    int insert(ServiceMethodObj record);
+    int insert(ServiceMethodEO record);
 
-    int insertSelective(ServiceMethodObj record);
+    int insertSelective(ServiceMethodEO record);
 
-    ServiceMethodObj selectByPrimaryKey(Long id);
+    ServiceMethodEO selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(ServiceMethodObj record);
+    int updateByPrimaryKeySelective(ServiceMethodEO record);
 
-    int updateByPrimaryKey(ServiceMethodObj record);
+    int updateByPrimaryKey(ServiceMethodEO record);
 }

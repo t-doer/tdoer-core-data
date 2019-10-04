@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tdoer.coredata.framework.mapper.service.ServiceMapper">
-  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.obj.service.ServiceObj">
+  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.eo.service.ServiceEO">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="PROVIDER" jdbcType="CHAR" property="provider" />
     <result column="NAME" jdbcType="VARCHAR" property="name" />
@@ -29,7 +29,7 @@
     delete from fw_service
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.service.ServiceObj" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.service.ServiceEO" useGeneratedKeys="true">
     insert into fw_service (PROVIDER, NAME, DESCRIPTION, 
       AUTHOR, MAINTAINERS, VERSION, 
       ENABLED, CREATED_BY, CREATED_AT, 
@@ -39,7 +39,7 @@
       #{enabled,jdbcType=CHAR}, #{createdBy,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
       #{updatedBy,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.service.ServiceObj" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.service.ServiceEO" useGeneratedKeys="true">
     insert into fw_service
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="provider != null">
@@ -112,7 +112,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.obj.service.ServiceObj">
+  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.eo.service.ServiceEO">
     update fw_service
     <set>
       <if test="provider != null">
@@ -151,7 +151,7 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.obj.service.ServiceObj">
+  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.eo.service.ServiceEO">
     update fw_service
     set PROVIDER = #{provider,jdbcType=CHAR},
       NAME = #{name,jdbcType=VARCHAR},

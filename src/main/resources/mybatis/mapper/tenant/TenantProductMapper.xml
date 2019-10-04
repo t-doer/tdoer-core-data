@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tdoer.coredata.framework.mapper.tenant.TenantProductMapper">
-  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.obj.tenant.TenantProductObj">
+  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.eo.tenant.TenantProductEO">
     <id column="ID" jdbcType="BIGINT" property="id" />
     <result column="TENANT_ID" jdbcType="BIGINT" property="tenantId" />
     <result column="PRODUCT_ID" jdbcType="VARCHAR" property="productId" />
@@ -27,7 +27,7 @@
     delete from fw_tenant_product
     where ID = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.tenant.TenantProductObj" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.tenant.TenantProductEO" useGeneratedKeys="true">
     insert into fw_tenant_product (TENANT_ID, PRODUCT_ID, START_DATE, 
       END_DATE, ENABLED, CREATED_BY, 
       CREATED_AT, UPDATED_BY, UPDATED_AT
@@ -37,7 +37,7 @@
       #{createdAt,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.tenant.TenantProductObj" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.tenant.TenantProductEO" useGeneratedKeys="true">
     insert into fw_tenant_product
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="tenantId != null">
@@ -98,7 +98,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.obj.tenant.TenantProductObj">
+  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.eo.tenant.TenantProductEO">
     update fw_tenant_product
     <set>
       <if test="tenantId != null">
@@ -131,7 +131,7 @@
     </set>
     where ID = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.obj.tenant.TenantProductObj">
+  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.eo.tenant.TenantProductEO">
     update fw_tenant_product
     set TENANT_ID = #{tenantId,jdbcType=BIGINT},
       PRODUCT_ID = #{productId,jdbcType=VARCHAR},

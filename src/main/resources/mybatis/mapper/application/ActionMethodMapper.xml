@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tdoer.coredata.framework.mapper.application.ActionMethodMapper">
-  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.obj.application.ActionMethodObj">
+  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.eo.application.ActionMethodEO">
     <id column="ID" jdbcType="BIGINT" property="id" />
     <result column="ACTION_ID" jdbcType="BIGINT" property="actionId" />
     <result column="METHOD_ID" jdbcType="BIGINT" property="methodId" />
@@ -23,7 +23,7 @@
     delete from fw_action_method
     where ID = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.application.ActionMethodObj" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.application.ActionMethodEO" useGeneratedKeys="true">
     insert into fw_action_method (ACTION_ID, METHOD_ID, CREATED_BY, 
       CREATED_AT, UPDATED_BY, UPDATED_AT
       )
@@ -31,7 +31,7 @@
       #{createdAt,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.application.ActionMethodObj" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.application.ActionMethodEO" useGeneratedKeys="true">
     insert into fw_action_method
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="actionId != null">
@@ -74,7 +74,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.obj.application.ActionMethodObj">
+  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.eo.application.ActionMethodEO">
     update fw_action_method
     <set>
       <if test="actionId != null">
@@ -98,7 +98,7 @@
     </set>
     where ID = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.obj.application.ActionMethodObj">
+  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.eo.application.ActionMethodEO">
     update fw_action_method
     set ACTION_ID = #{actionId,jdbcType=BIGINT},
       METHOD_ID = #{methodId,jdbcType=BIGINT},

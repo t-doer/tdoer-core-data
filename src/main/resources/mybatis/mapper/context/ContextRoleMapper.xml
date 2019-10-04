@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tdoer.coredata.framework.mapper.context.ContextRoleMapper">
-  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.obj.context.ContextRoleObj">
+  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.eo.context.ContextRoleEO">
     <id column="ID" jdbcType="BIGINT" property="id" />
     <result column="NAME" jdbcType="VARCHAR" property="name" />
     <result column="CODE" jdbcType="VARCHAR" property="code" />
@@ -29,7 +29,7 @@
     delete from fw_context_role
     where ID = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.context.ContextRoleObj" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.context.ContextRoleEO" useGeneratedKeys="true">
     insert into fw_context_role (NAME, CODE, CONTEXT_PATH, 
       PRODUCT_ID, CLIENT_ID, TENANT_ID, 
       ENABLED, CREATED_BY, CREATED_AT, 
@@ -39,7 +39,7 @@
       #{enabled,jdbcType=CHAR}, #{createdBy,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
       #{updatedBy,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.context.ContextRoleObj" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.context.ContextRoleEO" useGeneratedKeys="true">
     insert into fw_context_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="name != null">
@@ -112,7 +112,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.obj.context.ContextRoleObj">
+  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.eo.context.ContextRoleEO">
     update fw_context_role
     <set>
       <if test="name != null">
@@ -151,7 +151,7 @@
     </set>
     where ID = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.obj.context.ContextRoleObj">
+  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.eo.context.ContextRoleEO">
     update fw_context_role
     set NAME = #{name,jdbcType=VARCHAR},
       CODE = #{code,jdbcType=VARCHAR},

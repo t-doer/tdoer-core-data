@@ -1,17 +1,17 @@
 package com.tdoer.coredata.framework.mapper.tenant;
 
-import com.tdoer.coredata.framework.obj.tenant.OrganizationMemberRoleObj;
+import com.tdoer.coredata.framework.eo.tenant.OrganizationMemberRoleEO;
 
 public interface OrganizationMemberRoleMapper {
     int deleteByPrimaryKey(Long id);
 
-    int insert(OrganizationMemberRoleObj record);
+    int insert(OrganizationMemberRoleEO record);
 
-    int insertSelective(OrganizationMemberRoleObj record);
+    int insertSelective(OrganizationMemberRoleEO record);
 
-    OrganizationMemberRoleObj selectByPrimaryKey(Long id);
+    OrganizationMemberRoleEO selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(OrganizationMemberRoleObj record);
+    int updateByPrimaryKeySelective(OrganizationMemberRoleEO record);
 
-    int updateByPrimaryKey(OrganizationMemberRoleObj record);
+    int updateByPrimaryKey(OrganizationMemberRoleEO record);
 }

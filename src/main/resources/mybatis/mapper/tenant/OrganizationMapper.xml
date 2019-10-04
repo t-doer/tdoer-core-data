@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tdoer.coredata.framework.mapper.tenant.OrganizationMapper">
-  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.obj.tenant.OrganizationObj">
+  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.eo.tenant.OrganizationEO">
     <id column="ID" jdbcType="INTEGER" property="id" />
     <result column="TENANT_ID" jdbcType="INTEGER" property="tenantId" />
     <result column="NAME" jdbcType="VARCHAR" property="name" />
@@ -31,7 +31,7 @@
     delete from organization
     where ID = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.tenant.OrganizationObj" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.tenant.OrganizationEO" useGeneratedKeys="true">
     insert into organization (TENANT_ID, NAME, CODE, 
       LEVEL, STATUS, PARENT_ID, 
       CONTEXT_TYPE, CONTEXT_PATH, DESCRIPTION, 
@@ -43,7 +43,7 @@
       #{createdBy,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, 
       #{updatedAt,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.tenant.OrganizationObj" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.tenant.OrganizationEO" useGeneratedKeys="true">
     insert into organization
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="tenantId != null">
@@ -128,7 +128,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.obj.tenant.OrganizationObj">
+  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.eo.tenant.OrganizationEO">
     update organization
     <set>
       <if test="tenantId != null">
@@ -173,7 +173,7 @@
     </set>
     where ID = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.obj.tenant.OrganizationObj">
+  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.eo.tenant.OrganizationEO">
     update organization
     set TENANT_ID = #{tenantId,jdbcType=INTEGER},
       NAME = #{name,jdbcType=VARCHAR},

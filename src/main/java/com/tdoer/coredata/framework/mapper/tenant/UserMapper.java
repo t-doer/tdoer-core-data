@@ -1,17 +1,17 @@
 package com.tdoer.coredata.framework.mapper.tenant;
 
-import com.tdoer.coredata.framework.obj.tenant.UserObj;
+import com.tdoer.coredata.framework.eo.tenant.UserEO;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Long id);
 
-    int insert(UserObj record);
+    int insert(UserEO record);
 
-    int insertSelective(UserObj record);
+    int insertSelective(UserEO record);
 
-    UserObj selectByPrimaryKey(Long id);
+    UserEO selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(UserObj record);
+    int updateByPrimaryKeySelective(UserEO record);
 
-    int updateByPrimaryKey(UserObj record);
+    int updateByPrimaryKey(UserEO record);
 }

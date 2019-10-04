@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tdoer.coredata.framework.mapper.application.ApplicationMapper">
-  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.obj.application.ApplicationObj">
+  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.eo.application.ApplicationEO">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="NAME" jdbcType="VARCHAR" property="name" />
     <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
@@ -28,7 +28,7 @@
     delete from fw_application
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.application.ApplicationObj" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.application.ApplicationEO" useGeneratedKeys="true">
     insert into fw_application (NAME, DESCRIPTION, AUTHOR, 
       MAINTAINERS, VERSION, ENABLED, 
       CREATED_BY, CREATED_AT, UPDATED_BY, 
@@ -38,7 +38,7 @@
       #{createdBy,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, 
       #{updatedAt,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.obj.application.ApplicationObj" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.application.ApplicationEO" useGeneratedKeys="true">
     insert into fw_application
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="name != null">
@@ -105,7 +105,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.obj.application.ApplicationObj">
+  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.eo.application.ApplicationEO">
     update fw_application
     <set>
       <if test="name != null">
@@ -141,7 +141,7 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.obj.application.ApplicationObj">
+  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.eo.application.ApplicationEO">
     update fw_application
     set NAME = #{name,jdbcType=VARCHAR},
       DESCRIPTION = #{description,jdbcType=VARCHAR},
