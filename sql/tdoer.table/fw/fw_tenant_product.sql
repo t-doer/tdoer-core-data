@@ -5,19 +5,20 @@ drop table if exists fw_tenant_product;
 /*==============================================================*/
 create table fw_tenant_product
 (
-   ID                   bigint not null comment 'Mapping ID',
-   TENANT_ID            bigint not null comment 'Tenant ID',
-   PRODUCT_ID           varchar(64) not null comment 'Product ID',
-   START_DATE           date not null comment 'Rental start date',
-   END_DATE             date not null comment 'Rental end date',
-   ENABLED              char(1) default 'N' not null comment 'Enabled or not: Y | N',
-   CREATED_BY           varchar(64) not null comment 'User''s name who created the record',
-   CREATED_AT           datetime not null comment 'The time created at',
-   UPDATED_BY           varchar(64) comment 'User''s name who updated the record',
-   UPDATED_AT           timestamp default current_timestamp on update current_timestamp comment 'The time updated at',
+   ID                   bigint not null auto_increment comment '映射关系ID',
+   TENANT_ID            bigint not null comment '租户ID',
+   PRODUCT_ID           varchar(64) not null comment '产品ID',
+   START_DATE           date not null comment '租赁开始时间',
+   END_DATE             date not null comment '租赁结束时间',
+   DEFAULT_LANGUAGE     char(5) comment '默认使用产品的语言',
+   ENABLED              char(1) comment '租赁是否生效',
+   CREATED_BY           bigint not null comment '创建用户ID',
+   CREATED_AT           datetime not null comment '创建日期时间',
+   UPDATED_BY           bigint comment '更新用户ID',
+   UPDATED_AT           timestamp default current_timestamp on update current_timestamp comment '更新日期时间',
    primary key (ID)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-COMMENT='Product Rental, the tenant rents which products'
+COMMENT='产品租赁表，租户租用了哪些产品'
 AUTO_INCREMENT=1;

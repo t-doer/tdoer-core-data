@@ -5,23 +5,24 @@ drop table if exists organization;
 /*==============================================================*/
 create table organization
 (
-   ID                   int not null auto_increment comment 'Organization ID',
-   TENANT_ID            int not null comment 'Tenant ID',
-   NAME                 varchar(128) not null comment 'Organization name',
-   CODE                 varchar(64) not null comment 'Organization code',
-   LEVEL                int not null comment 'Organization hierarchy level: 1, 2, 3',
-   STATUS               varchar(12) not null comment 'Organization status: ACTIVE, DISABLED',
-   PARENT_ID            bigint(32) default NULL comment 'Parent organization‘s ID',
-   CONTEXT_TYPE         int not null comment 'Context type',
-   CONTEXT_PATH         varchar(512) not null comment 'Context path',
-   DESCRIPTION          varchar(512) comment 'Description',
-   CREATED_BY           varchar(32) not null comment 'Created by',
-   CREATED_AT           datetime not null comment 'Created at',
-   UPDATED_BY           varchar(32) comment 'Updated by',
-   UPDATED_AT           timestamp default current_timestamp on update current_timestamp comment 'The time updated at',
+   ID                   int not null auto_increment comment '组织ID',
+   GUID                 varchar(64) not null comment '组织全局ID，用于前端展示',
+   TENANT_ID            int not null comment '组织所属租户ID',
+   NAME                 varchar(128) not null comment '组织名称',
+   CODE                 varchar(64) not null comment '组织编码',
+   LEVEL                int not null comment '组织层级：1, 2, 3',
+   STATUS               varchar(12) not null comment '组织状态，例如：ACTIVE, DISABLED',
+   PARENT_ID            bigint(32) default NULL comment '父组织ID',
+   CONTEXT_TYPE         int not null comment '使用场景类型',
+   CONTEXT_PATH         varchar(512) not null comment '使用场景路径',
+   DESCRIPTION          varchar(512) comment '描述',
+   CREATED_BY           bigint not null comment '创建用户ID',
+   CREATED_AT           datetime not null comment '创建日期时间',
+   UPDATED_BY           bigint comment '更新用户ID',
+   UPDATED_AT           timestamp default current_timestamp on update current_timestamp comment '更新日期时间',
    primary key (ID)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-COMMENT='Organization'
+COMMENT='组织'
 AUTO_INCREMENT=1;

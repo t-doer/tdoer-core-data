@@ -5,19 +5,18 @@ drop table if exists fw_tenant;
 /*==============================================================*/
 create table fw_tenant
 (
-   ID                   bigint not null comment 'Tenant ID',
-   NAME                 varchar(64) not null comment 'Tenant name',
-   CODE                 varchar(64) not null comment 'Tenant code',
-   ENABLED              char(1) default 'N' not null comment 'Enabled or not: Y | N',
-   CREATED_BY           varchar(64) not null,
-   CREATED_AT           datetime not null comment 'The time created at',
-   UPDATED_BY           varchar(64) character set utf8,
-   UPDATED_AT           timestamp default current_timestamp on update current_timestamp comment 'The time updated at',
+   ID                   bigint not null auto_increment comment '租户ID',
+   GUID                 varchar(64) not null comment '租户全局ID，用于前端展示',
+   NAME                 varchar(64) not null comment '租户名称',
+   CODE                 varchar(64) not null comment '租户编码',
+   ENABLED              char(1) comment '是否启用：Y|N',
+   CREATED_BY           bigint not null comment '创建用户ID',
+   CREATED_AT           datetime not null comment '创建日期时间',
+   UPDATED_BY           bigint comment '更新用户ID',
+   UPDATED_AT           timestamp default current_timestamp on update current_timestamp comment '更新日期时间',
    primary key (ID)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-COMMENT='Tenant'
+COMMENT='租户'
 AUTO_INCREMENT=1;
-
-

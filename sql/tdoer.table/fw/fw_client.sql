@@ -5,24 +5,20 @@ drop table if exists fw_client;
 /*==============================================================*/
 create table fw_client
 (
-   ID                   varchar(64) not null comment 'Client Id: o2o_engineer_app, life_h5, etc.',
-   PRODUCT_ID           varchar(64) not null comment 'Product ID',
-   NAME                 varchar(64) not null comment 'Client name',
-   CATEGORY             varchar(64) not null comment 'Client category: B-END | C-END',
-   SECRET               varchar(128) comment 'Client secret for authorization',
-   GRANT_TYPES          varchar(128) not null comment 'Grant types',
-   SCOPES               varchar(64) comment 'Permitted access scope, say, read, write, trust',
-   AUTHORITIES          varchar(128) comment 'Authorities or roles the client play as',
-   TRUSTED              char(1) default 'N' not null comment 'Trusted client or not: Y | N',
-   AUTO_APPROVALS       varchar(256) comment 'Auto approvals',
-   ENABLED              varchar(64) default 'N' not null comment 'Enabled or not: Y | N',
-   CREATED_BY           varchar(64) not null comment 'User''s name who created the record',
-   CREATED_AT           datetime not null comment 'The time created at',
-   UPDATED_BY           varchar(64) comment 'User''s name who updated at',
-   UPDATED_AT           timestamp default current_timestamp on update current_timestamp comment 'The time updated at',
+   ID                   varchar(64) not null comment '产品端ID',
+   PRODUCT_ID           varchar(64) not null comment '所属产品ID',
+   NAME                 varchar(64) not null comment '产品端名称',
+   CATEGORY             varchar(64) not null comment '端分类，例如2B端：2B，2C端 | 2C',
+   TRUSTED              char(1) comment '是否是受信任的产品端：Y|N',
+   SCOPES               varchar(64) comment '允许访问的服务资源范围，例如read, write, trust',
+   ROLES                varchar(128) comment '产品端授权以访问服务资源，例如：ROLE_CLIENT,ROLE_TRUSTED_CLIENT',
+   ENABLED              varchar(64) not null comment '是否启用对外服务：Y|N',
+   CREATED_BY           bigint not null comment '创建用户ID',
+   CREATED_AT           datetime not null comment '创建日期时间',
+   UPDATED_BY           bigint comment '更新用户ID',
+   UPDATED_AT           timestamp default current_timestamp on update current_timestamp comment '更新日期时间',
    primary key (ID)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-COMMENT='Client Definition'
-AUTO_INCREMENT=1;
+COMMENT='产品端';

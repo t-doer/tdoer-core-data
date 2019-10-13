@@ -1,13 +1,15 @@
-drop table if exists fw_page_method;
+drop table if exists fw_context_role_resource;
 
 /*==============================================================*/
-/* Table: fw_page_method                                    */
+/* Table: fw_context_role                                       */
 /*==============================================================*/
-create table fw_page_method
+create table fw_context_role_resource
 (
    ID                   bigint not null auto_increment comment '关系映射ID',
-   PAGE_ID              bigint not null comment '页面ID',
-   METHOD_ID            bigint not null comment '服务方法ID',
+   ROLE_ID              bigint not null comment '角色ID',
+   CLIENT_ID            varchar(64) not null comment '产品端ID',
+   RESOURCE_ID          bigint not null comment '授权的资源ID',
+   RESOURCE_TYPE        varchar(16) not null comment '授权的资源类型',
    CREATED_BY           bigint not null comment '创建用户ID',
    CREATED_AT           datetime not null comment '创建日期时间',
    UPDATED_BY           bigint comment '更新用户ID',
@@ -16,5 +18,5 @@ create table fw_page_method
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-COMMENT='页面与服务方法关系映射表，加载页面需调用哪些服务方法'
-AUTO_INCREMENT=1;
+COMMENT='角色与产品前端资源授权关系表'
+AUTO_INCREMENT=1
