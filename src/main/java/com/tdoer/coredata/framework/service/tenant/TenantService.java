@@ -16,10 +16,14 @@
  */
 package com.tdoer.coredata.framework.service.tenant;
 
+import com.tdoer.coredata.framework.eo.tenant.TenantEO;
+
 /**
  * @author Leon Wang (ahbbhywmd@163.com)
  * @Description tenant info and operation
  * @create 2019-10-05
  */
 public interface TenantService {
+
+    TenantEO selectByPrimaryKey(Long id);
 }

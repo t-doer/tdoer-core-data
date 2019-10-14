@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tdoer.coredata.framework.mapper.application.ActionMethodMapper">
+<mapper namespace="com.tdoer.coredata.framework.mapper.master.application.ActionMethodMapper">
   <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.eo.application.ActionMethodEO">
     <id column="ID" jdbcType="BIGINT" property="id" />
     <result column="ACTION_ID" jdbcType="BIGINT" property="actionId" />
