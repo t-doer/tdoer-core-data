@@ -4,10 +4,11 @@ spring:
       enabled: true
     name: tdoer-core-coredata
   datasource:
-    url: jdbc:mysql://localhost:3306/tdoer_core_data?useUnicode=true&characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://10.8.2.119:3306/tdoer_core_data?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
-    password: 123456
+    password: "000000"
     driver-class-name: com.mysql.cj.jdbc.Driver
+    name: tdoer_core_data
   jackson:
     date-format: yyyy/MM/dd HH:mm:ss
     time-zone: GMT+8
@@ -16,6 +17,8 @@ spring:
     port: 6379
     timeout: 1000
     database: 1
+  profiles:
+    active: default,api
   ## sleuth and zipkin
 #  sleuth:
 #    sampler:
