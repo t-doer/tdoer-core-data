@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tdoer.coredata.framework.mapper.tenant.OrganizationMapper">
+<mapper namespace="com.tdoer.coredata.framework.mapper.organization.OrganizationMapper">
   <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.eo.tenant.OrganizationEO">
     <id column="ID" jdbcType="INTEGER" property="id" />
     <result column="TENANT_ID" jdbcType="INTEGER" property="tenantId" />

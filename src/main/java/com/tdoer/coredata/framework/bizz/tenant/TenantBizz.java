@@ -15,10 +15,27 @@
  */
 package com.tdoer.coredata.framework.bizz.tenant;
 
+import com.tdoer.coredata.framework.service.tenant.TenantService;
+import com.tdoer.coredata.framework.service.user.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 /**
  * @author Leon Wang (ahbbhywmd@163.com)
  * @Description
  * @create 2019-10-05
  */
+@Component
 public class TenantBizz {
+
+    @Autowired
+    UserService userService;
+    @Autowired
+    TenantService tenantService;
+
+    public void testDatasource(){
+        tenantService.selectByPrimaryKey(1l);
+        userService.selectByPrimaryKey(1l);
+    }
+
 }

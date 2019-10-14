@@ -17,6 +17,8 @@ spring:
     port: 6379
     timeout: 1000
     database: 1
+  cache:
+    type: redis
   profiles:
     active: default,api
   ## sleuth and zipkin
@@ -70,7 +72,7 @@ eureka:
 #    availability-zones:
 #      cn-shanghai: cn-shanghai-b,cn-shanghai-c,cn-shanghai-d
     service-url:
-      defaultZone: http://localhost:7020/eureka/
+      defaultZone: http://10.8.2.111:7020/eureka/
     #  cn-shanghai-b: http://${eureka.peer.hostname}:${eureka.peer.port}/eureka/
 
     ## register the instance
@@ -128,7 +130,11 @@ management:
         include: "*"
   server:
     port: ${mgmt-port:7091}
-
+ # redisson lock
+redisson:
+ address:  redis://${spring.redis.host}:${spring.redis.port}
+ password: ${spring.redis.password}
+ database: ${spring.redis.database}
 mybatis:
     mapper-locations: classpath:mybatis/*/*/*.xml
 

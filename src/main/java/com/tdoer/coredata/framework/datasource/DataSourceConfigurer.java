@@ -20,6 +20,8 @@ package com.tdoer.coredata.framework.datasource;
 
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 import com.tdoer.coredata.framework.datasource.config.MasterDatabaseConfig;
+import com.tdoer.coredata.framework.datasource.config.TenantDatabaseConfig;
+import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,15 +41,14 @@ import java.util.Map;
  * @description
  */
 @Configuration
-@MapperScan("com.tdoer.coredata.framework.mapper")
+@Slf4j
 public class DataSourceConfigurer {
 
     @Autowired
     private MasterDatabaseConfig masterDatabaseConfig;
 
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(DataSourceConfigurer.class);
-
+    @Autowired
+    private TenantDatabaseConfig tenantDatabaseConfig;
 
 
     /**
@@ -59,16 +60,19 @@ public class DataSourceConfigurer {
     public DataSource dynamicRoutingDataSource() {
         DynamicRoutingDataSource dynamicRoutingDataSource;
         try {
-            LOGGER.info("init dataSource success.");
+            log.info("init dataSource success.");
             dynamicRoutingDataSource = new DynamicRoutingDataSource();
             Map<Object, Object> dataSourceMap = new HashMap<>();
-            DataSource dataSource = DruidDataSourceFactory.createDataSource(masterDatabaseConfig.getProperties());
-            dataSourceMap.put(masterDatabaseConfig.getName(), dataSource);
-            dynamicRoutingDataSource.setDefaultTargetDataSource(dataSource);// 设置默认数据源
+            DataSource masterDataSource = DruidDataSourceFactory.createDataSource(masterDatabaseConfig.getProperties());
+            dataSourceMap.put(masterDatabaseConfig.getName(), masterDataSource);
+            //TODO 查询已存在的所有数据源
+            DataSource tenantDataSource = DruidDataSourceFactory.createDataSource(tenantDatabaseConfig.getProperties("demo1", null, null));
+            dataSourceMap.put("demo1", tenantDataSource);
+            dynamicRoutingDataSource.setDefaultTargetDataSource(masterDataSource);// 设置默认数据源
             dynamicRoutingDataSource.setTargetDataSources(dataSourceMap);
         } catch (Exception e) {
-            LOGGER.error("Create DataSource Error : {}", e);
-            throw new RuntimeException();
+            log.error("Create DataSource Error : {}", e);
+            throw new RuntimeException(e);
         }
         return dynamicRoutingDataSource;
     }

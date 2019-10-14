@@ -16,10 +16,25 @@
  */
 package com.tdoer.coredata.framework.service.impl.tenant;
 
+import com.tdoer.coredata.framework.eo.tenant.TenantEO;
+import com.tdoer.coredata.framework.mapper.master.tenant.TenantMapper;
+import com.tdoer.coredata.framework.service.tenant.TenantService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 /**
  * @author Leon Wang (ahbbhywmd@163.com)
  * @Description tenant service implment
  * @create 2019-10-05
  */
-public class TenantServiceImpl {
+@Service
+public class TenantServiceImpl implements TenantService {
+
+    @Autowired
+    TenantMapper tenantMapper;
+
+    @Override
+    public TenantEO selectByPrimaryKey(Long id) {
+        return tenantMapper.selectByPrimaryKey(id);
+    }
 }

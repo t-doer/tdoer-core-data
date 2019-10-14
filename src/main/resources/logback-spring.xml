@@ -5,7 +5,7 @@
     <springProfile name="default,dev">
         <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
             <encoder>
-                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5p [%file:%line] - %m%n</pattern>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{logId}] %-5p [%file:%line] - %m%n</pattern>
             </encoder>
         </appender>
         <logger name="com.tdoer.coredata" level="debug" additivity="false">
@@ -18,7 +18,7 @@
     <springProfile name="sit,uat">
         <appender name="LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
             <encoder>
-                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5p [%file:%line] - %m%n</pattern>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{logId}] %-5p [%file:%line] - %m%n</pattern>
             </encoder>
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
                 <fileNamePattern>logs/%d{yyyy-MM-dd}.log</fileNamePattern>
@@ -36,7 +36,7 @@
     <springProfile name="prod">
         <appender name="LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
             <encoder>
-                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5p [%file:%line] - %m%n</pattern>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{logId}] %-5p [%file:%line] - %m%n</pattern>
             </encoder>
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
                 <fileNamePattern>logs/%d{yyyy-MM-dd}.log</fileNamePattern>
