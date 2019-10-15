@@ -22,6 +22,8 @@ import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 import com.tdoer.coredata.framework.datasource.config.MasterDatabaseConfig;
 import com.tdoer.coredata.framework.datasource.config.TenantDatabaseConfig;
+import com.tdoer.coredata.framework.eo.tenant.TenantDatabaseEO;
+import com.tdoer.coredata.framework.mapper.master.tenant.TenantDatabaseMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,9 +45,11 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
 
     @Autowired
     MasterDatabaseConfig masterDatabaseConfig;
-
     @Autowired
     TenantDatabaseConfig tenantDatabaseConfig;
+    @Autowired
+    TenantDatabaseMapper tenantDatabaseMapper;
+
 
     /**
      * 设置当前数据源
@@ -80,6 +84,10 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
         }
     }
 
+    public Map<Object, Object> getTargetDataSource() {
+        return targetDataSources;
+    }
+
     /**
      * 是否存在当前key的 DataSource
      *
@@ -93,27 +101,34 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
     /**
      * 动态增加数据源
      *
-     * @param map 数据源属性
+     * @param database 数据库名
      * @return
      */
-    public synchronized boolean addDataSource(Map<String, String> map) {
-        String database = map.get("database");//获取要添加的数据库名
+    public synchronized boolean addDataSource(String database, Long tenantId) {
         if (StringUtils.isBlank(database)) return false;
         if (DynamicRoutingDataSource.isExistDataSource(database)) return true;
         DruidDataSource masterDataSource = getDataSource(null);
         DynamicCreateDataSource.createDB(masterDataSource, database);
         Map<Object, Object> targetMap = DynamicRoutingDataSource.targetDataSources;
         DruidDataSource tenantDatabase = getDataSource(database);
-        targetMap.put(database, tenantDatabase);
-        this.setTargetDataSources(targetMap);
-        this.afterPropertiesSet();
         //切换创建库表的数据源
         DynamicDataSourceContextHolder.setDataSourceKey(database);
         database = DynamicDataSourceContextHolder.getDataSourceKey();
         //create table after init database and use success
         log.info("create tables.");
         DynamicCreateDataSource.createTable(tenantDatabase);
-        log.info("dataSource [{}] has been added", database);
+        TenantDatabaseEO eo = new TenantDatabaseEO();
+        eo.setDbName(database);
+        eo.setDbUrl(tenantDatabaseConfig.getUrl().replace("{0}", database));
+        eo.setDriverClassName(tenantDatabaseConfig.getDriverClassName());
+        eo.setUserName(tenantDatabaseConfig.getUsername());
+        eo.setPassword(tenantDatabase.getPassword());
+        eo.setTenantId(tenantId);
+        tenantDatabaseMapper.insertSelective(eo);
+        targetMap.put(database, tenantDatabase);
+        this.setTargetDataSources(targetMap);
+        this.afterPropertiesSet();
+        log.info("dataSource {} has been added", database);
         return true;
     }
 

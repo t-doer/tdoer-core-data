@@ -26,9 +26,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @RestController
 @RequestMapping("/test")
 public class TestController {
@@ -44,14 +41,12 @@ public class TestController {
      * @return
      */
     @GetMapping("/addDataSource")
-    public Object addDataSource(@Param("database") String database) {
-        Map<String, String> map = new HashMap<>();
-        map.put("database", database);
-        return dynamicRoutingDataSource.addDataSource(map);
+    public Object addDataSource(@Param("database") String database,@Param("tenantId") Long tenantId) {
+        return dynamicRoutingDataSource.addDataSource(database,tenantId);
     }
 
     @GetMapping("/switchDataSource")
-    public void switchDataSource() {
-        tenantBizz.testDatasource();
+    public void switchDataSource(@Param("id") Long id) {
+        tenantBizz.testDatasource(id);
     }
 }

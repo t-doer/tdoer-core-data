@@ -63,7 +63,7 @@ public class DynamicDataSourceAspect {
      */
     @Before("tenantDataSourceAspect()")
     public void switchDataSource(JoinPoint point) {
-        String tenantDatabase = "demo1";
+        String tenantDatabase = "tenant_1";
 
         if (DynamicRoutingDataSource.isExistDataSource(tenantDatabase) && !tenantDatabase.equals(DynamicDataSourceContextHolder.getDataSourceKey())) {
             DynamicDataSourceContextHolder.setDataSourceKey(tenantDatabase);

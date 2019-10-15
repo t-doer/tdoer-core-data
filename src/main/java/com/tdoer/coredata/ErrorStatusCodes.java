@@ -50,7 +50,7 @@ public interface ErrorStatusCodes extends StatusCodes {
     @ReasonPhrase("参数校验错误{0}")
     int PARAM_SINGLE_VALID_FAIL = 50002;
 
-    @ReasonPhrase("初始化数据库信息失败")
+    @ReasonPhrase("数据库已初始化成功,无需再次初始化")
     int INIT_DATABASE_FAIL = 50003;
 
 }
