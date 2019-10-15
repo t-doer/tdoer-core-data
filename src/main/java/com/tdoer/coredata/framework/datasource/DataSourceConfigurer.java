@@ -21,18 +21,21 @@ package com.tdoer.coredata.framework.datasource;
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 import com.tdoer.coredata.framework.datasource.config.MasterDatabaseConfig;
 import com.tdoer.coredata.framework.datasource.config.TenantDatabaseConfig;
+import com.tdoer.coredata.framework.eo.tenant.TenantDatabaseEO;
+import com.tdoer.coredata.framework.mapper.master.tenant.TenantDatabaseMapper;
+import com.tdoer.coredata.framework.service.impl.tenant.TenantDatabaseServiceImpl;
+import com.tdoer.coredata.framework.service.tenant.TenantDatabaseService;
 import lombok.extern.slf4j.Slf4j;
-import org.mybatis.spring.annotation.MapperScan;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -47,10 +50,6 @@ public class DataSourceConfigurer {
     @Autowired
     private MasterDatabaseConfig masterDatabaseConfig;
 
-    @Autowired
-    private TenantDatabaseConfig tenantDatabaseConfig;
-
-
     /**
      * 注册动态数据源
      *
@@ -60,14 +59,11 @@ public class DataSourceConfigurer {
     public DataSource dynamicRoutingDataSource() {
         DynamicRoutingDataSource dynamicRoutingDataSource;
         try {
-            log.info("init dataSource success.");
+            log.info("init master dataSource success.");
             dynamicRoutingDataSource = new DynamicRoutingDataSource();
             Map<Object, Object> dataSourceMap = new HashMap<>();
             DataSource masterDataSource = DruidDataSourceFactory.createDataSource(masterDatabaseConfig.getProperties());
             dataSourceMap.put(masterDatabaseConfig.getName(), masterDataSource);
-            //TODO 查询已存在的所有数据源
-            DataSource tenantDataSource = DruidDataSourceFactory.createDataSource(tenantDatabaseConfig.getProperties("demo1", null, null));
-            dataSourceMap.put("demo1", tenantDataSource);
             dynamicRoutingDataSource.setDefaultTargetDataSource(masterDataSource);// 设置默认数据源
             dynamicRoutingDataSource.setTargetDataSources(dataSourceMap);
         } catch (Exception e) {

@@ -15,8 +15,11 @@
  */
 package com.tdoer.coredata.framework.bizz.tenant;
 
+import com.tdoer.coredata.framework.eo.tenant.TenantEO;
+import com.tdoer.coredata.framework.eo.tenant.UserEO;
 import com.tdoer.coredata.framework.service.tenant.TenantService;
 import com.tdoer.coredata.framework.service.user.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -26,6 +29,7 @@ import org.springframework.stereotype.Component;
  * @create 2019-10-05
  */
 @Component
+@Slf4j
 public class TenantBizz {
 
     @Autowired
@@ -33,9 +37,11 @@ public class TenantBizz {
     @Autowired
     TenantService tenantService;
 
-    public void testDatasource(){
-        tenantService.selectByPrimaryKey(1l);
-        userService.selectByPrimaryKey(1l);
+    public void testDatasource(Long id){
+        TenantEO tenantEO =  tenantService.selectByPrimaryKey(id);
+        log.info("tenantEO={}",tenantEO);
+        UserEO userEO =  userService.selectByPrimaryKey(id);
+        log.info("userEO={}",userEO);
     }
 
 }
