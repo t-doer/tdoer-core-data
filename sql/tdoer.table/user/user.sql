@@ -5,24 +5,24 @@ drop table if exists user;
 /*==============================================================*/
 create table user
 (
-   ID                   bigint not null auto_increment comment 'User ID',
-   TENANT_ID            bigint not null comment 'Tenant ID',
-   ACCOUNT              varchar(64) not null comment 'Login account',
-   PASSWORD             varchar(64) not null comment 'Login password',
-   NAME                 varchar(64) not null comment 'User name',
-   PHONE                varchar(20) not null comment 'Mobile phone',
-   EMAIL                varchar(20) comment 'User E-mail',
-   STATUS               varchar(12) not null default '1' comment 'Account status: NORMAL, LOCKED',
-   REMARK               varchar(256) comment 'Remark',
-   DELETED              char(1) not null comment 'Deleted or not : Y | N',
-   CREATED_BY           varchar(64) not null comment 'Created by',
-   CREATED_AT           datetime not null comment 'Created at',
-   UPDATED_BY           varchar(64) comment 'Updated by',
-   UPDATED_AT           timestamp default current_timestamp on update current_timestamp comment 'The time updated at',
-   primary key (id)
+   ID                   bigint not null auto_increment comment '用户ID',
+   GUID                 varchar(64) not null comment '用户全局ID，用于前端展示',
+   TENANT_ID            bigint not null comment '所属租户ID',
+   ACCOUNT              varchar(64) not null comment '登录帐号',
+   PASSWORD             varchar(64) not null comment '登录密码',
+   NAME                 varchar(64) not null comment '用户名',
+   PHONE                varchar(20) not null comment '手机号码',
+   EMAIL                varchar(20) comment 'E-mail地址',
+   STATUS               varchar(12) not null default '1' comment '帐号状态：NORMAL, LOCKED',
+   REMARK               varchar(256) comment '备注',
+   DELETED              char(1) not null comment '是否删除：Y | N',
+   CREATED_BY           bigint not null comment '创建用户ID',
+   CREATED_AT           datetime not null comment '创建日期时间',
+   UPDATED_BY           bigint comment '更新用户ID',
+   UPDATED_AT           timestamp default current_timestamp on update current_timestamp comment '更新日期时间',
+   primary key (ID)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-COMMENT='User'
+COMMENT='租户的用户'
 AUTO_INCREMENT=1;
-
