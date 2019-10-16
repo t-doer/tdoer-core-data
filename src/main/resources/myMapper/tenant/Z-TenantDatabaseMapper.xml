@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bybon.trade.order.mapper.rec.AbnormalOrderMapper" >
+  <insert id="batchSave" >
+    insert into rec_abnormal_order (order_no,abnormal_status,create_time,create_by,update_by)
+    values
+    <foreach collection="orderNoList" item="orderNo" separator=",">
+      (#{orderNo},#{abnormalStatus},now(),#{optBy},#{optBy})
+    </foreach>
+  </insert>
+  <!--getByOrderNo-->
+  <select id="getByOrderNo" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select * from rec_abnormal_order where order_no = #{orderNo,jdbcType=VARCHAR}
+  </select>
+  <!--getListByOrderNoList-->
+  <select id="getListByOrderNoList" resultMap="BaseResultMap">
+    select * from rec_abnormal_order
+    where order_no in
+    <foreach collection="list" item="orderNo" open="(" close=")" separator=",">
+      #{orderNo,jdbcType=VARCHAR}
+    </foreach>
+  </select>
+  <!--updateOrdersWithExample-->
+  <update id="updateOrdersWithExample">
+    update rec_abnormal_order 
+    <set >
+      <if test="exp.updateBy != null" >
+        update_by = #{exp.updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="exp.optBy != null" >
+        opt_by = #{exp.optBy,jdbcType=VARCHAR},
+      </if>
+      <if test="exp.optTime != null" >
+        opt_time = #{exp.optTime,jdbcType=VARCHAR},
+      </if>
+      <if test="exp.abnormalStatus != null" >
+        abnormal_status = #{exp.abnormalStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_no in
+    <foreach collection="list" item="orderNo" open="(" close=")" separator=",">
+      #{orderNo,jdbcType=VARCHAR}
+    </foreach>
+    <if test="exp.abnormalStatus != null">
+      and abnormal_status = 1
+    </if>
+  </update>
+
+  <select id="getViewVoListByQueryDto" parameterType="com.bybon.trade.order.dto.rec.AbnormalOrderQueryDto" resultType="com.bybon.trade.order.vo.rec.AbnormalOrderViewVo">
+    select ao.order_no orderNo ,ao.abnormal_status abnormalStatus,ao.create_time createTime,
+    ao.opt_by optBy ,ao.opt_time optTime ,
+    <include refid="Common.Base_Machine_Sql"/>
+    from rec_abnormal_order ao
+    left join rec_recovery_order ro on ao.order_no = ro.order_no
+    <where>
+      <if test="orderNo != null and orderNo != ''">
+        and ao.order_no = #{orderNo,jdbcType=VARCHAR}
+      </if>
+      <if test="sn != null and sn != ''">
+        and ro.sn = #{sn,jdbcType=VARCHAR}
+      </if>
+      <if test="imei != null and imei != ''">
+        and ro.imei = #{imei,jdbcType=VARCHAR}
+      </if>
+      <if test="abnormalStatus != null">
+        and ao.abnormal_status = #{abnormalStatus,jdbcType=TINYINT}
+      </if>
+      <if test="createTime != null and createTime[0]!= null and createTime[0] != ''">
+        and DATE_FORMAT(ao.create_time,'%Y-%m-%d') &gt;=#{createTime[0]}
+      </if>
+      <if test="createTime != null and createTime[1]!= null and createTime[1]!= ''">
+        and DATE_FORMAT(ao.create_time,'%Y-%m-%d') &lt;= #{createTime[1]}
+      </if>
+      <if test="optTime != null and optTime[0]!= null and optTime[0] != ''">
+        and DATE_FORMAT(ao.opt_time,'%Y-%m-%d') &gt;= #{optTime[0]}
+      </if>
+      <if test="optTime != null and optTime[1]!= null and optTime[1]!= ''">
+        and DATE_FORMAT(ao.opt_time,'%Y-%m-%d') &lt;= #{optTime[1]}
+      </if>
+    </where>
+    order by ao.create_time desc
+  </select>
+
+</mapper>
