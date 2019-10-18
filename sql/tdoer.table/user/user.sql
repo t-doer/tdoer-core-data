@@ -26,3 +26,13 @@ ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 COMMENT='租户的用户'
 AUTO_INCREMENT=1;
+
+/**
+ * Index list
+ */
+create unique index idx_user_1 on user(GUID);
+create unique index idx_user_2 on user(TENANT_ID, ACCOUNT);
+create unique index idx_user_3 on user(TENANT_ID, PHONE);
+create unique index idx_user_4 on user(TENANT_ID, EMAIL);
+create unique index idx_user_5 on user(TENANT_ID, NAME);
+

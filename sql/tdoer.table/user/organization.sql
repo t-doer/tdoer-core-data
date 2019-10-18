@@ -26,3 +26,11 @@ ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 COMMENT='组织'
 AUTO_INCREMENT=1;
+
+/**
+ * Index list
+ */
+create unique index idx_organization_1 on organization(GUID);
+create unique index idx_organization_2 on organization(NAME);
+create unique index idx_organization_3 on organization(CODE);
+

@@ -21,3 +21,10 @@ ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 COMMENT='组织成员'
 AUTO_INCREMENT=1;
+
+/**
+ * Index list
+ */
+create unique index idx_organization_member_1 on organization(ORG_ID, USER_ID);
+
+
