@@ -8,7 +8,7 @@ create table fw_client_context
    ID                   bigint not null auto_increment comment '映射关系ID',
    CLIENT_ID            bigint not null comment '产品端ID',
    CONTEXT_PATH         varchar(512) not null comment '使用场景类型路径',
-   ENTRY_APP_ID         varchar(64) not null comment '默认入口应用编码',
+   ENTRY_APP_CODE       varchar(64) not null comment '默认入口应用编码',
    ENTRY_NAV_ITEM       varchar(64) not null comment '默认入口导航项',
    ENTRY_LANGUAGE       char(5) not null comment '默认访问语言，如果为空，将使用租户设置的默认语言',
    TENANT_ID            bigint not null default 0 comment '所属ID，如果ID值为0，为默认设置',

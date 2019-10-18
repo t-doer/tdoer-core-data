@@ -5,15 +5,15 @@ drop table if exists organization;
 /*==============================================================*/
 create table organization
 (
-   ID                   int not null auto_increment comment '组织ID',
+   ID                   bigint not null auto_increment comment '组织ID',
    GUID                 varchar(64) not null comment '组织全局ID，用于前端展示',
-   TENANT_ID            int not null comment '组织所属租户ID',
+   TENANT_ID            bigint not null comment '组织所属租户ID',
    NAME                 varchar(128) not null comment '组织名称',
    CODE                 varchar(64) not null comment '组织编码',
    LEVEL                int not null comment '组织层级：1, 2, 3',
    STATUS               varchar(12) not null comment '组织状态，例如：ACTIVE, DISABLED',
    PARENT_ID            bigint(32) default NULL comment '父组织ID',
-   CONTEXT_TYPE         int not null comment '使用场景类型',
+   CONTEXT_TYPE         bigint not null comment '使用场景类型',
    CONTEXT_PATH         varchar(512) not null comment '使用场景路径',
    DESCRIPTION          varchar(512) comment '描述',
    CREATED_BY           bigint not null comment '创建用户ID',

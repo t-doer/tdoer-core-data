@@ -8,6 +8,7 @@ create table fw_service
    ID                   bigint not null auto_increment comment '服务ID',
    NAME                 varchar(64) not null comment '服务名称',
    CODE                 varchar(64) not null comment '服务编码，必须唯一',
+   TYPE                 varchar(16) not null comment '服务类型：GATEWAY, BUSINESS, INFRASTRUCTURE等',
    DESCRIPTION          varchar(526) comment '服务描述',
    VERSION              varchar(32) not null comment '服务版本，比如1.0',
    PROVIDER             varchar(64) not null comment '服务提供者，可以是个人，也可以是组织',

@@ -183,7 +183,7 @@ create table fw_client
     PRODUCT_ID           bigint not null comment '所属产品ID',
     NAME                 varchar(64) not null comment '产品端名称',
     CODE                 varchar(64) not null comment '服务编码，必须唯一',
-    CATEGORY             varchar(64) not null comment '端分类，例如2B端：2B，2C端 | 2C',
+    CATEGORY             varchar(64) not null comment '端分类，例如2B端：B_END，2C端 ：C_END',
     TRUSTED              char(1) not null default 'N' comment '是否是受信任的产品端：Y|N，默认：N',
     SCOPES               varchar(64) not null comment '允许访问的服务资源范围，例如read, write, trust',
     ROLES                varchar(128) not null comment '产品端授权以访问服务资源，例如：ROLE_CLIENT,ROLE_TRUSTED_CLIENT',
@@ -243,7 +243,7 @@ create table fw_client_context
     ID                   bigint not null auto_increment comment '映射关系ID',
     CLIENT_ID            bigint not null comment '产品端ID',
     CONTEXT_PATH         varchar(512) not null comment '使用场景类型路径',
-    ENTRY_APP_ID         varchar(64) not null comment '默认入口应用编码',
+    ENTRY_APP_CODE       varchar(64) not null comment '默认入口应用编码',
     ENTRY_NAV_ITEM       varchar(64) not null comment '默认入口导航项',
     ENTRY_LANGUAGE       char(5) not null comment '默认访问语言，如果为空，将使用租户设置的默认语言',
     TENANT_ID            bigint not null default 0 comment '所属ID，如果ID值为0，为默认设置',
@@ -484,10 +484,10 @@ drop table if exists fw_context_type;
 /*==============================================================*/
 create table fw_context_type
 (
-    ID                   int not null auto_increment comment '类型值',
+    ID                   bigint not null auto_increment comment '类型值',
     CODE                 varchar(64) not null comment '类型编码',
     NAME                 varchar(64) not null comment '类型名称',
-    PARENT_TYPE          int not null default 0 comment '父类型值',
+    PARENT_TYPE          bigint not null default 0 comment '父类型值',
     CONTEXT_PATH         varchar(512) not null comment '使用场景类型路径',
     CATEGORY             varchar(64) not null comment '使用场景类型分类，例如：用户，组织等',
     TENANT_ID            bigint not null default 0 comment '所属ID，如果ID值为0，为默认设置',
@@ -610,6 +610,7 @@ create table fw_product
     CODE                 varchar(64) not null comment '服务编码，必须唯一',
     DESCRIPTION          varchar(512) comment '产品描述',
     LANGUAGES            varchar(200) not null comment '产品支持的语言列表，以逗号隔开',
+    VERSION              varchar(32) not null comment '产品版本号',
     ENABLED              char(1) not null default 'N' comment '是否启用对外服务：Y|N，默认：N',
     CREATED_BY           bigint not null comment '创建用户ID',
     CREATED_AT           datetime not null comment '创建日期时间',
@@ -638,6 +639,7 @@ create table fw_service
     ID                   bigint not null auto_increment comment '服务ID',
     NAME                 varchar(64) not null comment '服务名称',
     CODE                 varchar(64) not null comment '服务编码，必须唯一',
+    TYPE                 varchar(16) not null comment '服务类型：GATEWAY, BUSINESS, INFRASTRUCTURE等',
     DESCRIPTION          varchar(526) comment '服务描述',
     VERSION              varchar(32) not null comment '服务版本，比如1.0',
     PROVIDER             varchar(64) not null comment '服务提供者，可以是个人，也可以是组织',
@@ -688,6 +690,27 @@ create table fw_service_method
  * Index list
  */
 create unique index idx_fw_service_method_1 on fw_service_method(SERVICE_ID, NAME);
+
+drop table if exists fw_service_reference;
+
+/*==============================================================*/
+/* Table: fw_service_reference                                  */
+/*==============================================================*/
+create table fw_service_reference
+(
+    ID                   bigint not null auto_increment comment '关系映射ID',
+    SERVICE_ID           bigint not null comment '服务ID',
+    REFEREE_ID           bigint not null comment '被引用服务ID',
+    CREATED_BY           bigint not null comment '创建用户ID',
+    CREATED_AT           datetime not null comment '创建日期时间',
+    UPDATED_BY           bigint not null comment '更新用户ID',
+    UPDATED_AT           timestamp not null default current_timestamp on update current_timestamp comment '更新日期时间',
+    primary key(ID)
+)
+    ENGINE=InnoDB
+    DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+    COMMENT='服务引用，一个服务需直接引用哪些其他服务'
+    AUTO_INCREMENT=1;
 
 drop table if exists fw_tenant;
 

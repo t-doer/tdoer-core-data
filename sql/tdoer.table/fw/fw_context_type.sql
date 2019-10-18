@@ -5,10 +5,10 @@ drop table if exists fw_context_type;
 /*==============================================================*/
 create table fw_context_type
 (
-   ID                   int not null auto_increment comment '类型值',
+   ID                   bigint not null auto_increment comment '类型值',
    CODE                 varchar(64) not null comment '类型编码',
    NAME                 varchar(64) not null comment '类型名称',
-   PARENT_TYPE          int not null default 0 comment '父类型值',
+   PARENT_TYPE          bigint not null default 0 comment '父类型值',
    CONTEXT_PATH         varchar(512) not null comment '使用场景类型路径',
    CATEGORY             varchar(64) not null comment '使用场景类型分类，例如：用户，组织等',
    TENANT_ID            bigint not null default 0 comment '所属ID，如果ID值为0，为默认设置',

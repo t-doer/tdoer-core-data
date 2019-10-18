@@ -9,7 +9,7 @@ create table fw_client
    PRODUCT_ID           bigint not null comment '所属产品ID',
    NAME                 varchar(64) not null comment '产品端名称',
    CODE                 varchar(64) not null comment '服务编码，必须唯一',
-   CATEGORY             varchar(64) not null comment '端分类，例如2B端：2B，2C端 | 2C',
+   CATEGORY             varchar(64) not null comment '端分类，例如2B端：B_END，2C端 ：C_END',
    TRUSTED              char(1) not null default 'N' comment '是否是受信任的产品端：Y|N，默认：N',
    SCOPES               varchar(64) not null comment '允许访问的服务资源范围，例如read, write, trust',
    ROLES                varchar(128) not null comment '产品端授权以访问服务资源，例如：ROLE_CLIENT,ROLE_TRUSTED_CLIENT',
