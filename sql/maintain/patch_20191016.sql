@@ -860,8 +860,8 @@ create table organization
  * Index list
  */
 create unique index idx_organization_1 on organization(GUID);
-create unique index idx_organization_2 on organization(NAME);
-create unique index idx_organization_3 on organization(CODE);
+create unique index idx_organization_2 on organization(TENANT_ID, NAME);
+create unique index idx_organization_3 on organization(TENANT_ID, CODE);
 
 drop table if exists organization_member;
 
