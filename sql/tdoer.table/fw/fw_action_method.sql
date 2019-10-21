@@ -7,6 +7,7 @@ create table fw_action_method
 (
    ID                   bigint not null auto_increment comment '关系映射Id',
    APPLICATION_ID       bigint not null comment '操作所属应用ID',
+   PAGE_ID              bigint not null comment '所属页面ID',
    ACTION_ID            bigint not null comment '操作Id',
    SERVICE_ID           bigint not null comment '方法所属服务ID',
    METHOD_ID            bigint not null comment '服务方法ID',
