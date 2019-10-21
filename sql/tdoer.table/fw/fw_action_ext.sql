@@ -7,6 +7,7 @@ create table fw_action_ext
 (
    ID                   bigint not null auto_increment comment '扩展ID',
    ACTION_ID            bigint not null comment '操作ID',
+   APPLICATION_ID       bigint not null comment '操作所属应用ID',
    PRODUCT_ID           bigint not null default 0 comment '扩展属性：给特定产品的扩展，默认：0',
    CLIENT_ID            bigint not null default 0 comment '扩展属性：给特定产品端的扩展，默认：0',
    TENANT_ID            bigint not null default 0 comment '扩展属性：给特定租户的扩展，默认：0',
@@ -26,4 +27,5 @@ AUTO_INCREMENT=1;
 /**
  * Index list
  */
-create unique index idx_fw_action_ext_1 on fw_action_ext(ACTION_ID , PRODUCT_ID, CLIENT_ID, TENANT_ID, CONTEXT_PATH);
+create unique index idx_fw_action_ext_1 on fw_action_ext(ACTION_ID, PRODUCT_ID, CLIENT_ID, TENANT_ID, CONTEXT_PATH);
+create index idx_fw_action_ext_2 on fw_action_ext(APPLICATION_ID, PRODUCT_ID, CLIENT_ID, TENANT_ID, CONTEXT_PATH);

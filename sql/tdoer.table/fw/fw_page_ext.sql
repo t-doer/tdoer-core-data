@@ -7,6 +7,7 @@ create table fw_page_ext
 (
    ID                   bigint not null auto_increment comment '扩展ID',
    PAGE_ID              bigint not null comment '页面ID',
+   APPLICATION_ID       bigint not null comment '页面所属应用ID',
    PRODUCT_ID           bigint not null default 0 comment '扩展属性：给特定产品的扩展，默认：0',
    CLIENT_ID            bigint not null default 0 comment '扩展属性：给特定产品端的扩展，默认：0',
    TENANT_ID            bigint not null default 0 comment '扩展属性：给特定租户的扩展，默认：0',
@@ -27,3 +28,4 @@ AUTO_INCREMENT=1;
  * Index list
  */
 create unique index idx_fw_page_ext_1 on fw_page_ext(PAGE_ID, PRODUCT_ID, CLIENT_ID, TENANT_ID, CONTEXT_PATH);
+create unique index idx_fw_page_ext_1 on fw_page_ext(APPLICATION_ID, PRODUCT_ID, CLIENT_ID, TENANT_ID, CONTEXT_PATH);

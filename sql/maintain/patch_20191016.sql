@@ -38,6 +38,7 @@ create table fw_action_ext
 (
     ID                   bigint not null auto_increment comment '扩展ID',
     ACTION_ID            bigint not null comment '操作ID',
+    APPLICATION_ID       bigint not null comment '操作所属应用ID',
     PRODUCT_ID           bigint not null default 0 comment '扩展属性：给特定产品的扩展，默认：0',
     CLIENT_ID            bigint not null default 0 comment '扩展属性：给特定产品端的扩展，默认：0',
     TENANT_ID            bigint not null default 0 comment '扩展属性：给特定租户的扩展，默认：0',
@@ -57,7 +58,8 @@ create table fw_action_ext
 /**
  * Index list
  */
-create unique index idx_fw_action_ext_1 on fw_action_ext(ACTION_ID , PRODUCT_ID, CLIENT_ID, TENANT_ID, CONTEXT_PATH);
+create unique index idx_fw_action_ext_1 on fw_action_ext(ACTION_ID, PRODUCT_ID, CLIENT_ID, TENANT_ID, CONTEXT_PATH);
+create index idx_fw_action_ext_2 on fw_action_ext(APPLICATION_ID, PRODUCT_ID, CLIENT_ID, TENANT_ID, CONTEXT_PATH);
 
 drop table if exists fw_action_method;
 
@@ -67,9 +69,9 @@ drop table if exists fw_action_method;
 create table fw_action_method
 (
     ID                   bigint not null auto_increment comment '关系映射Id',
-    APPLICATION_ID       bigint not null comment '应用ID',
+    APPLICATION_ID       bigint not null comment '操作所属应用ID',
     ACTION_ID            bigint not null comment '操作Id',
-    SERVICE_ID           bigint not null comment '服务ID',
+    SERVICE_ID           bigint not null comment '方法所属服务ID',
     METHOD_ID            bigint not null comment '服务方法ID',
     CREATED_BY           bigint not null comment '创建用户ID',
     CREATED_AT           datetime not null comment '创建日期时间',
@@ -125,7 +127,6 @@ create table fw_application_service
     ID                   bigint not null auto_increment comment '关系映射ID',
     APPLICATION_ID       bigint not null comment '应用ID',
     SERVICE_ID           bigint not null comment '服务ID',
-    CUSTOMIZED           char(1) not null default 'N' comment '是否为定制化操作：Y|N，默认：N',
     ENABLED              char(1) not null default 'N' comment '是否启用对外服务：Y|N，默认：N',
     CREATED_BY           bigint not null comment '创建用户ID',
     CREATED_AT           datetime not null comment '创建日期时间',
@@ -151,7 +152,8 @@ drop table if exists fw_application_service_ext;
 create table fw_application_service_ext
 (
     ID                   bigint not null auto_increment comment '扩展ID',
-    RELATIONSHIP_ID      bigint comment '应用服务映射关系ID，外键',
+    APPLICATION_ID       bigint not null comment '应用ID',
+    SERVICE_ID           bigint not null comment '服务ID',
     PRODUCT_ID           bigint not null default 0 comment '扩展属性：给特定产品的扩展，默认：0',
     CLIENT_ID            bigint not null default 0 comment '扩展属性：给特定产品端的扩展，默认：0',
     TENANT_ID            bigint not null default 0 comment '扩展属性：给特定租户的扩展，默认：0',
@@ -171,8 +173,10 @@ create table fw_application_service_ext
 /**
  * Index list
  */
-create unique index idx_fw_application_service_ext_1 on fw_application_service_ext(RELATIONSHIP_ID, PRODUCT_ID,
+create unique index idx_fw_application_service_ext_1 on fw_application_service_ext(APPLICATION_ID, SERVICE_ID, PRODUCT_ID,
                                                                                    CLIENT_ID, TENANT_ID, CONTEXT_PATH);
+create unique index idx_fw_application_service_ext_2 on fw_application_service_ext(APPLICATION_ID,
+                                                                                   PRODUCT_ID, CLIENT_ID, TENANT_ID, CONTEXT_PATH);                                                                          CLIENT_ID, TENANT_ID, CONTEXT_PATH);
 
 drop table if exists fw_client;
 
@@ -552,6 +556,7 @@ create table fw_page_ext
 (
     ID                   bigint not null auto_increment comment '扩展ID',
     PAGE_ID              bigint not null comment '页面ID',
+    APPLICATION_ID       bigint not null comment '页面所属应用ID',
     PRODUCT_ID           bigint not null default 0 comment '扩展属性：给特定产品的扩展，默认：0',
     CLIENT_ID            bigint not null default 0 comment '扩展属性：给特定产品端的扩展，默认：0',
     TENANT_ID            bigint not null default 0 comment '扩展属性：给特定租户的扩展，默认：0',
@@ -572,6 +577,7 @@ create table fw_page_ext
  * Index list
  */
 create unique index idx_fw_page_ext_1 on fw_page_ext(PAGE_ID, PRODUCT_ID, CLIENT_ID, TENANT_ID, CONTEXT_PATH);
+create unique index idx_fw_page_ext_1 on fw_page_ext(APPLICATION_ID, PRODUCT_ID, CLIENT_ID, TENANT_ID, CONTEXT_PATH);
 
 
 drop table if exists fw_page_method;
@@ -582,9 +588,9 @@ drop table if exists fw_page_method;
 create table fw_page_method
 (
     ID                   bigint not null auto_increment comment '关系映射ID',
-    APPLICATION_ID       bigint not null comment '应用ID',
+    APPLICATION_ID       bigint not null comment '页面所属应用ID',
     PAGE_ID              bigint not null comment '页面ID',
-    SERVICE_ID           bigint not null comment '服务ID',
+    SERVICE_ID           bigint not null comment '方法所属服务ID',
     METHOD_ID            bigint not null comment '服务方法ID',
     CREATED_BY           bigint not null comment '创建用户ID',
     CREATED_AT           datetime not null comment '创建日期时间',
@@ -601,6 +607,7 @@ create table fw_page_method
  * Index list
  */
 create unique index idx_fw_page_method_1 on fw_page_method(PAGE_ID, METHOD_ID);
+
 
 drop table if exists fw_product;
 
@@ -695,6 +702,40 @@ create table fw_service_method
  */
 create unique index idx_fw_service_method_1 on fw_service_method(SERVICE_ID, NAME);
 
+drop table if exists fw_service_method_ext;
+
+/*==============================================================*/
+/* Table: fw_service_method_ext                                 */
+/*==============================================================*/
+create table fw_service_method_ext
+(
+    ID                   bigint not null auto_increment comment '扩展ID',
+    METHOD_ID            bigint not null comment '服务方法ID',
+    SERVICE_ID           bigint not null comment '方法所属服务ID',
+    APPLICATION_ID       bigint default 0 not null comment '扩展属性：给特定应用的扩展，默认：0',
+    PRODUCT_ID           bigint default 0  not null comment '扩展属性：给特定产品的扩展，默认：0',
+    CLIENT_ID            bigint default 0 not null comment '扩展属性：给特定产品端的扩展，默认：0',
+    TENANT_ID            bigint default 0 not null comment '扩展属性：给特定租户的扩展，默认：0',
+    CONTEXT_PATH         varchar(512) default 'void' not null comment '扩展属性：给特定使用场景的扩展，默认：void',
+    ENABLED              char(1) default 'N' not null comment '是否启用对外服务：Y|N，默认：N',
+    CREATED_BY           bigint not null comment '创建用户ID',
+    CREATED_AT           datetime not null comment '创建日期时间',
+    UPDATED_BY           bigint not null comment '更新用户ID',
+    UPDATED_AT           timestamp not null default current_timestamp on update current_timestamp comment '更新日期时间',
+    primary key (ID)
+)
+    ENGINE=InnoDB
+    DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+    COMMENT='服务扩展方法'
+    AUTO_INCREMENT=1;
+
+/**
+ * Index list
+ */
+create unique index idx_fw_service_method_ext_1 on fw_service_method_ext(METHOD_ID, APPLICATION_ID, PRODUCT_ID,
+                                                                         CLIENT_ID, TENANT_ID, CONTEXT_PATH);
+create index idx_fw_service_method_ext_2 on fw_service_method_ext(SERVICE_ID, APPLICATION_ID, PRODUCT_ID,
+                                                                  CLIENT_ID, TENANT_ID, CONTEXT_PATH);
 drop table if exists fw_service_reference;
 
 /*==============================================================*/
