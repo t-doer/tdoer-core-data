@@ -130,6 +130,7 @@ create table fw_application_service
     ID                   bigint not null auto_increment comment '关系映射ID',
     APPLICATION_ID       bigint not null comment '应用ID',
     SERVICE_ID           bigint not null comment '服务ID',
+    CUSTOMIZED           char(1) not null default 'N' comment '是否为定制化操作：Y|N，默认：N',
     ENABLED              char(1) not null default 'N' comment '是否启用对外服务：Y|N，默认：N',
     CREATED_BY           bigint not null comment '创建用户ID',
     CREATED_AT           datetime not null comment '创建日期时间',
