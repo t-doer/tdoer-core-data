@@ -6,7 +6,9 @@ drop table if exists fw_page_method;
 create table fw_page_method
 (
    ID                   bigint not null auto_increment comment '关系映射ID',
+   APPLICATION_ID       bigint not null comment '应用ID',
    PAGE_ID              bigint not null comment '页面ID',
+   SERVICE_ID           bigint not null comment '服务ID',
    METHOD_ID            bigint not null comment '服务方法ID',
    CREATED_BY           bigint not null comment '创建用户ID',
    CREATED_AT           datetime not null comment '创建日期时间',
