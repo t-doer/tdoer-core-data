@@ -7,7 +7,8 @@ create table fw_tenant_client
 (
    ID                   bigint not null auto_increment comment '关系映射ID',
    TENANT_ID            bigint default NULL comment '租户ID',
-   CLIENT_ID            varchar(64) not null comment '产品端ID',
+   PRODUCT_ID           bigint not null comment '产品ID',
+   CLIENT_ID            bigint not null comment '产品端ID',
    SECRET               varchar(64) not null comment '租户接入产品端的秘钥',
    HOSTS                varchar(512) not null comment '端访问域名列表，以逗号分隔',
    ENABLED              char(1) not null default 'N' comment '是否生效：Y|N',

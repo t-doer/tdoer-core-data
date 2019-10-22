@@ -7,7 +7,7 @@ create table fw_tenant_product
 (
    ID                   bigint not null auto_increment comment '映射关系ID',
    TENANT_ID            bigint not null comment '租户ID',
-   PRODUCT_ID           varchar(64) not null comment '产品ID',
+   PRODUCT_ID           bigint not null comment '产品ID',
    START_DATE           date not null comment '租赁开始时间',
    END_DATE             date not null comment '租赁结束时间',
    DEFAULT_LANGUAGE     char(5) not null comment '默认使用产品的语言',

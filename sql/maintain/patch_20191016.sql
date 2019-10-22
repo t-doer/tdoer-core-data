@@ -800,7 +800,8 @@ create table fw_tenant_client
 (
     ID                   bigint not null auto_increment comment '关系映射ID',
     TENANT_ID            bigint default NULL comment '租户ID',
-    CLIENT_ID            varchar(64) not null comment '产品端ID',
+    PRODUCT_ID           bigint not null comment '产品ID',
+    CLIENT_ID            bigint not null comment '产品端ID',
     SECRET               varchar(64) not null comment '租户接入产品端的秘钥',
     HOSTS                varchar(512) not null comment '端访问域名列表，以逗号分隔',
     ENABLED              char(1) not null default 'N' comment '是否生效：Y|N',
@@ -820,6 +821,7 @@ create table fw_tenant_client
  */
 create unique index idx_fw_tenant_client_1 on fw_tenant_client(TENANT_ID, CLIENT_ID);
 
+
 drop table if exists fw_tenant_product;
 
 /*==============================================================*/
@@ -829,7 +831,7 @@ create table fw_tenant_product
 (
     ID                   bigint not null auto_increment comment '映射关系ID',
     TENANT_ID            bigint not null comment '租户ID',
-    PRODUCT_ID           varchar(64) not null comment '产品ID',
+    PRODUCT_ID           bigint not null comment '产品ID',
     START_DATE           date not null comment '租赁开始时间',
     END_DATE             date not null comment '租赁结束时间',
     DEFAULT_LANGUAGE     char(5) not null comment '默认使用产品的语言',
@@ -844,6 +846,12 @@ create table fw_tenant_product
     DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
     COMMENT='产品租赁表，租户租用了哪些产品'
     AUTO_INCREMENT=1;
+
+/**
+ * Index list
+ */
+create unique index idx_fw_tenant_product_1 on fw_tenant_product(TENANT_ID, PRODUCT_ID);
+
 
 /**
  * Index list
