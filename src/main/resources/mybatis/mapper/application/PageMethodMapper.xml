@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tdoer.coredata.framework.mapper.master.application.PageMethodMapper">
+<mapper namespace="com.tdoer.coredata.framework.mapper.application.PageMethodMapper">
   <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.eo.application.PageMethodEO">
     <id column="ID" jdbcType="BIGINT" property="id" />
     <result column="PAGE_ID" jdbcType="BIGINT" property="pageId" />

@@ -19,10 +19,10 @@
 package com.tdoer.coredata;
 
 import com.alibaba.druid.pool.DruidDataSourceFactory;
-import com.tdoer.coredata.framework.datasource.DynamicRoutingDataSource;
-import com.tdoer.coredata.framework.datasource.config.TenantDatabaseConfig;
 import com.tdoer.coredata.framework.eo.tenant.TenantDatabaseEO;
-import com.tdoer.coredata.framework.mapper.master.tenant.TenantDatabaseMapper;
+import com.tdoer.coredata.framework.mapper.tenant.TenantDatabaseMapper;
+import com.tdoer.datasource.DynamicRoutingDataSource;
+import com.tdoer.datasource.config.TenantDatabaseConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;

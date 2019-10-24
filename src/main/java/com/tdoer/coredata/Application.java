@@ -32,7 +32,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication(exclude = {MongoAutoConfiguration.class})
 @EnableErrorHandler({ErrorStatusCodes.class, BedrockImplErrorCodes.class})
 @EnableEurekaClient
-@ComponentScan(basePackages={"com.tdoer.coredata","com.tdoer.springboot.log"})
+@ComponentScan(basePackages={"com.tdoer.coredata","com.tdoer.datasource","com.tdoer.springboot.log"})
 @EnableTransactionManagement
 @EnableManagementProtection
 public class Application {

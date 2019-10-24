@@ -19,7 +19,7 @@
 package com.tdoer.coredata.framework.controller;
 
 import com.tdoer.coredata.framework.bizz.tenant.TenantBizz;
-import com.tdoer.coredata.framework.datasource.DynamicRoutingDataSource;
+import com.tdoer.datasource.DynamicRoutingDataSource;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
