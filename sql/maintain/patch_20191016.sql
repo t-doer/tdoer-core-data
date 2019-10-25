@@ -442,7 +442,10 @@ create table fw_context_role_method
 (
     ID                   bigint not null auto_increment comment '关系映射Id',
     ROLE_ID              bigint not null comment '角色ID',
+    TENANT_ID            bigint default NULL comment '租户ID',
+    CONTEXT_PATH         varchar(512) not null comment '使用场景路径，是实例时，属于扩展属性',
     METHOD_ID            bigint not null comment '服务方法ID',
+    SERVICE_ID           bigint not null comment '服务ID',
     CREATED_BY           bigint not null comment '创建用户ID',
     CREATED_AT           datetime not null comment '创建日期时间',
     UPDATED_BY           bigint not null comment '更新用户ID',
@@ -458,35 +461,37 @@ create table fw_context_role_method
  * Index list
  */
 create unique index idx_fw_context_role_method_1 on fw_context_role_method(ROLE_ID, METHOD_ID);
+create index idx_fw_context_role_method_2 on fw_context_role_method(TENANT_ID, CONTEXT_PATH, ROLE_ID);
 
-drop table if exists fw_context_role_resource;
+drop table if exists fw_context_public_method;
 
 /*==============================================================*/
-/* Table: fw_context_role                                       */
+/* Table: fw_context_public_method                                */
 /*==============================================================*/
-create table fw_context_role_resource
+create table fw_context_public_method
 (
-    ID                   bigint not null auto_increment comment '关系映射ID',
-    ROLE_ID              bigint not null comment '角色ID',
-    CLIENT_ID            bigint not null comment '产品端ID',
-    RESOURCE_ID          bigint not null comment '授权的资源ID',
-    RESOURCE_TYPE        varchar(16) not null comment '授权的资源类型：PAGE|ACTION|NAVIGATION',
+    ID                   bigint not null auto_increment comment '关系映射Id',
+    TENANT_ID            bigint default NULL comment '租户ID',
+    CONTEXT_PATH         varchar(512) not null comment '使用场景路径，是实例时，属于扩展属性',
+    METHOD_ID            bigint not null comment '服务方法ID',
+    SERVICE_ID           bigint not null comment '服务ID',
     CREATED_BY           bigint not null comment '创建用户ID',
     CREATED_AT           datetime not null comment '创建日期时间',
-    UPDATED_BY           bigint comment '更新用户ID',
-    UPDATED_AT           timestamp default current_timestamp on update current_timestamp comment '更新日期时间',
+    UPDATED_BY           bigint not null comment '更新用户ID',
+    UPDATED_AT           timestamp not null default current_timestamp on update current_timestamp comment '更新日期时间',
     primary key (ID)
 )
     ENGINE=InnoDB
     DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-    COMMENT='角色与产品前端资源授权关系表'
+    COMMENT='角色与后端服务方法授权关系表'
     AUTO_INCREMENT=1;
 
 /**
  * Index list
  */
-create unique index idx_fw_context_role_resource_1 on fw_context_role_resource(ROLE_ID, CLIENT_ID, RESOURCE_ID,
-                                                                               RESOURCE_TYPE);
+create unique index idx_fw_context_public_method_1 on fw_context_public_method(CONTEXT_PATH, METHOD_ID);
+create index idx_fw_context_public_method_2 on fw_context_role_method(TENANT_ID, CONTEXT_PATH);
+
 drop table if exists fw_context_type;
 
 /*==============================================================*/
@@ -846,12 +851,6 @@ create table fw_tenant_product
     DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
     COMMENT='产品租赁表，租户租用了哪些产品'
     AUTO_INCREMENT=1;
-
-/**
- * Index list
- */
-create unique index idx_fw_tenant_product_1 on fw_tenant_product(TENANT_ID, PRODUCT_ID);
-
 
 /**
  * Index list

@@ -7,6 +7,8 @@ create table fw_context_role_resource
 (
    ID                   bigint not null auto_increment comment '关系映射ID',
    ROLE_ID              bigint not null comment '角色ID',
+   TENANT_ID            bigint default NULL comment '租户ID',
+   CONTEXT_PATH         varchar(512) not null comment '使用场景路径，是实例时，属于扩展属性',
    CLIENT_ID            bigint not null comment '产品端ID',
    RESOURCE_ID          bigint not null comment '授权的资源ID',
    RESOURCE_TYPE        varchar(16) not null comment '授权的资源类型：PAGE|ACTION|NAVIGATION',
@@ -26,3 +28,4 @@ AUTO_INCREMENT=1;
  */
 create unique index idx_fw_context_role_resource_1 on fw_context_role_resource(ROLE_ID, CLIENT_ID, RESOURCE_ID,
                                                                                RESOURCE_TYPE);
+create index idx_fw_context_role_resource_2 on fw_context_role_resource(TENANT_ID, CONTEXT_PATH, ROLE_ID);
