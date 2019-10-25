@@ -19,7 +19,7 @@
 package com.tdoer.coredata.framework.controller;
 
 import com.tdoer.coredata.framework.bizz.tenant.TenantBizz;
-import com.tdoer.datasource.DynamicRoutingDataSource;
+import com.tdoer.coredata.framework.bizz.tenant.TenantDatabaseBizzTest;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @Autowired
-    private DynamicRoutingDataSource dynamicRoutingDataSource;
+    private TenantDatabaseBizzTest tenantDatabaseBizz;
     @Autowired
     TenantBizz tenantBizz;
 
@@ -41,8 +41,8 @@ public class TestController {
      * @return
      */
     @GetMapping("/addDataSource")
-    public Object addDataSource(@Param("database") String database,@Param("tenantId") Long tenantId) {
-        return dynamicRoutingDataSource.addDataSource(database,tenantId);
+    public void addDataSource(@Param("database") String database, @Param("tenantId") Long tenantId) {
+        tenantDatabaseBizz.addDatabase(database, tenantId);
     }
 
     @GetMapping("/switchDataSource")
