@@ -58,6 +58,11 @@
             <artifactId>tdoer-springboot</artifactId>
             <version>1.0.2-RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>com.tdoer</groupId>
+            <artifactId>tdoer-dynamic-datasource</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
         <!-- Application: MySQL, MyBatis -->
         <dependency>

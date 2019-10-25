@@ -11,6 +11,9 @@
         <logger name="com.tdoer.coredata" level="debug" additivity="false">
             <appender-ref ref="STDOUT" />
         </logger>
+        <logger name="com.tdoer.datasource" level="debug" additivity="false">
+            <appender-ref ref="STDOUT" />
+        </logger>
         <root level="INFO">
             <appender-ref ref="STDOUT"/>
         </root>

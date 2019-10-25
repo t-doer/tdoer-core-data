@@ -20,18 +20,12 @@ package com.tdoer.coredata.framework.service.tenant;
 
 import com.tdoer.coredata.framework.eo.tenant.TenantDatabaseEO;
 
-import java.util.List;
-
 /**
  * @author conan (kly824968443@gmail.com)
- * @create 2019/10/14
+ * @create 2019/10/25
  * @description
  */
 public interface TenantDatabaseService {
 
-    List<TenantDatabaseEO> selectList();
-
-    int insert(TenantDatabaseEO record);
-
-
+    void save(TenantDatabaseEO record);
 }

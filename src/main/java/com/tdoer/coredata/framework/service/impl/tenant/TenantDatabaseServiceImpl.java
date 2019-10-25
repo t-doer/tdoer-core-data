@@ -19,31 +19,28 @@
 package com.tdoer.coredata.framework.service.impl.tenant;
 
 import com.tdoer.coredata.framework.eo.tenant.TenantDatabaseEO;
-import com.tdoer.coredata.framework.mapper.master.tenant.TenantDatabaseMapper;
+import com.tdoer.coredata.framework.mapper.tenant.TenantDatabaseMapper;
 import com.tdoer.coredata.framework.service.tenant.TenantDatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
  * @author conan (kly824968443@gmail.com)
- * @create 2019/10/14
+ * @create 2019/10/25
  * @description
  */
 @Service
 public class TenantDatabaseServiceImpl implements TenantDatabaseService {
 
     @Autowired
-    TenantDatabaseMapper mapper;
+    TenantDatabaseMapper tenantDatabaseMapper;
 
     @Override
-    public List<TenantDatabaseEO> selectList() {
-        return mapper.selectList();
-    }
-
-    @Override
-    public int insert(TenantDatabaseEO record) {
-        return mapper.insert(record);
+    public void save(TenantDatabaseEO record) {
+        if (record.getId() == null) {
+            tenantDatabaseMapper.insertSelective(record);
+        } else {
+            tenantDatabaseMapper.updateByPrimaryKey(record);
+        }
     }
 }

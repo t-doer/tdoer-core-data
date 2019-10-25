@@ -19,7 +19,7 @@
 package com.tdoer.coredata.framework.service.impl.tenant;
 
 import com.tdoer.coredata.framework.eo.application.ActionEO;
-import com.tdoer.coredata.framework.mapper.master.application.ActionMapper;
+import com.tdoer.coredata.framework.mapper.application.ActionMapper;
 import com.tdoer.coredata.framework.service.tenant.ActionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
