@@ -6,6 +6,7 @@ drop table if exists fw_tenant_client;
 create table fw_tenant_client
 (
    ID                   bigint not null auto_increment comment '关系映射ID',
+   GUID                 varchar(64) not null comment '租户端全局ID，用于客户端传输',
    TENANT_ID            bigint default NULL comment '租户ID',
    PRODUCT_ID           bigint not null comment '产品ID',
    CLIENT_ID            bigint not null comment '产品端ID',
@@ -27,3 +28,4 @@ AUTO_INCREMENT=1;
  * Index list
  */
 create unique index idx_fw_tenant_client_1 on fw_tenant_client(TENANT_ID, CLIENT_ID);
+create unique index idx_fw_tenant_client_2 on fw_tenant_client(GUID);

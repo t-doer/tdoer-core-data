@@ -9,7 +9,6 @@ create table fw_tenant
    GUID                 varchar(64) not null comment '租户全局ID，用于前端展示',
    NAME                 varchar(64) not null comment '租户名称',
    CODE                 varchar(64) not null comment '租户编码',
-
    ENABLED              char(1) not null default 'N' comment '是否启用：Y|N',
    CREATED_BY           bigint not null comment '创建用户ID',
    CREATED_AT           datetime not null comment '创建日期时间',
