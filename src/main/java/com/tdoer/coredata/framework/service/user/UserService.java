@@ -28,4 +28,6 @@ import com.tdoer.coredata.framework.eo.tenant.UserEO;
 public interface UserService {
 
     UserEO selectByPrimaryKey(Long id);
+
+    UserEO selectByTenantIdAndAccount(Long tenantId,String account);
 }

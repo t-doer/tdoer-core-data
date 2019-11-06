@@ -16,32 +16,37 @@
  *
  */
 
-package com.tdoer.coredata.framework.service.impl.user;
+package com.tdoer.coredata.bedrock.bizz;
 
+import com.tdoer.bedrock.tenant.AccountStatus;
+import com.tdoer.bedrock.tenant.BaseUser;
+import com.tdoer.bedrock.tenant.CredentialStatus;
 import com.tdoer.coredata.framework.eo.tenant.UserEO;
-import com.tdoer.coredata.framework.mapper.user.UserMapper;
 import com.tdoer.coredata.framework.service.user.UserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 /**
  * @author conan (kly824968443@gmail.com)
- * @create 2019/10/14
+ * @create 2019/11/5
  * @description
  */
-@Service
-public class UserServiceImpl implements UserService{
+@Component
+public class UserBizz {
 
     @Autowired
-    UserMapper userMapper;
+    UserService userService;
 
-    @Override
-    public UserEO selectByPrimaryKey(Long id) {
-        return userMapper.selectByPrimaryKey(id);
-    }
-
-    @Override
-    public UserEO selectByTenantIdAndAccount(Long tenantId, String account) {
-        return userMapper.selectByTenantIdAndAccount(tenantId,account);
+    public BaseUser findByAccount(Long tenantId,String account) {
+        UserEO user = userService.selectByTenantIdAndAccount(tenantId,account);
+        if (user == null) {
+            return null;
+        }
+        BaseUser vo = new BaseUser();
+        BeanUtils.copyProperties(user, vo);
+        vo.setStatus(AccountStatus.resolve(user.getStatus()));
+        vo.setCredentialStatus(CredentialStatus.ACTIVE);
+        return vo;
     }
 }
