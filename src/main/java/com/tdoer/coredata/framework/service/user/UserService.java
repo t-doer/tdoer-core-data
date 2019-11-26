@@ -18,7 +18,7 @@
 
 package com.tdoer.coredata.framework.service.user;
 
-import com.tdoer.coredata.framework.eo.tenant.UserEO;
+import com.tdoer.coredata.framework.eo.user.UserEO;
 
 /**
  * @author conan (kly824968443@gmail.com)
@@ -30,4 +30,6 @@ public interface UserService {
     UserEO selectByPrimaryKey(Long id);
 
     UserEO selectByTenantIdAndAccount(Long tenantId,String account);
+
+    UserEO selectByTenantIdAndGuid(Long tenantId,String guid);
 }

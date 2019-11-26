@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tdoer.coredata.framework.mapper.user.UserMapper">
+  <resultMap id="BaseResultMap" type="com.tdoer.coredata.framework.eo.user.UserEO">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="GUID" jdbcType="VARCHAR" property="guid" />
+    <result column="TENANT_ID" jdbcType="BIGINT" property="tenantId" />
+    <result column="ACCOUNT" jdbcType="VARCHAR" property="account" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="DELETED" jdbcType="CHAR" property="deleted" />
+    <result column="CREATED_BY" jdbcType="BIGINT" property="createdBy" />
+    <result column="CREATED_AT" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="UPDATED_BY" jdbcType="BIGINT" property="updatedBy" />
+    <result column="UPDATED_AT" jdbcType="TIMESTAMP" property="updatedAt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, GUID, TENANT_ID, ACCOUNT, PASSWORD, NAME, PHONE, EMAIL, STATUS, REMARK, DELETED, 
+    CREATED_BY, CREATED_AT, UPDATED_BY, UPDATED_AT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from user
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.user.UserEO" useGeneratedKeys="true">
+    insert into user (GUID, TENANT_ID, ACCOUNT, 
+      PASSWORD, NAME, PHONE, 
+      EMAIL, STATUS, REMARK, 
+      DELETED, CREATED_BY, CREATED_AT, 
+      UPDATED_BY, UPDATED_AT)
+    values (#{guid,jdbcType=VARCHAR}, #{tenantId,jdbcType=BIGINT}, #{account,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{deleted,jdbcType=CHAR}, #{createdBy,jdbcType=BIGINT}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updatedBy,jdbcType=BIGINT}, #{updatedAt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.tdoer.coredata.framework.eo.user.UserEO" useGeneratedKeys="true">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        GUID,
+      </if>
+      <if test="tenantId != null">
+        TENANT_ID,
+      </if>
+      <if test="account != null">
+        ACCOUNT,
+      </if>
+      <if test="password != null">
+        PASSWORD,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="phone != null">
+        PHONE,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="deleted != null">
+        DELETED,
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY,
+      </if>
+      <if test="createdAt != null">
+        CREATED_AT,
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY,
+      </if>
+      <if test="updatedAt != null">
+        UPDATED_AT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="tenantId != null">
+        #{tenantId,jdbcType=BIGINT},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=CHAR},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=BIGINT},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tdoer.coredata.framework.eo.user.UserEO">
+    update user
+    <set>
+      <if test="guid != null">
+        GUID = #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="tenantId != null">
+        TENANT_ID = #{tenantId,jdbcType=BIGINT},
+      </if>
+      <if test="account != null">
+        ACCOUNT = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        DELETED = #{deleted,jdbcType=CHAR},
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY = #{createdBy,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null">
+        CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY = #{updatedBy,jdbcType=BIGINT},
+      </if>
+      <if test="updatedAt != null">
+        UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tdoer.coredata.framework.eo.user.UserEO">
+    update user
+    set GUID = #{guid,jdbcType=VARCHAR},
+      TENANT_ID = #{tenantId,jdbcType=BIGINT},
+      ACCOUNT = #{account,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      DELETED = #{deleted,jdbcType=CHAR},
+      CREATED_BY = #{createdBy,jdbcType=BIGINT},
+      CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=BIGINT},
+      UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

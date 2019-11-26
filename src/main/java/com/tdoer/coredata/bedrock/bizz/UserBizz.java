@@ -21,7 +21,7 @@ package com.tdoer.coredata.bedrock.bizz;
 import com.tdoer.bedrock.tenant.AccountStatus;
 import com.tdoer.bedrock.tenant.BaseUser;
 import com.tdoer.bedrock.tenant.CredentialStatus;
-import com.tdoer.coredata.framework.eo.tenant.UserEO;
+import com.tdoer.coredata.framework.eo.user.UserEO;
 import com.tdoer.coredata.framework.service.user.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +38,23 @@ public class UserBizz {
     @Autowired
     UserService userService;
 
-    public BaseUser findByAccount(Long tenantId,String account) {
-        UserEO user = userService.selectByTenantIdAndAccount(tenantId,account);
+    public BaseUser findByAccount(Long tenantId, String account) {
+        UserEO user = userService.selectByTenantIdAndAccount(tenantId, account);
+        return copyFromEo(user);
+    }
+
+
+    public BaseUser findByGuid(Long tenantId, String guid) {
+        UserEO user = userService.selectByTenantIdAndGuid(tenantId, guid);
+        return copyFromEo(user);
+    }
+
+    public BaseUser findById(Long id) {
+        UserEO user = userService.selectByPrimaryKey(id);
+        return copyFromEo(user);
+    }
+
+    private BaseUser copyFromEo(UserEO user) {
         if (user == null) {
             return null;
         }

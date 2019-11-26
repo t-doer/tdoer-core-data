@@ -1,9 +1,11 @@
-package com.tdoer.coredata.framework.eo.tenant;
+package com.tdoer.coredata.framework.eo.user;
 
 import java.util.Date;
 
 public class UserEO {
     private Long id;
+
+    private String guid;
 
     private Long tenantId;
 
@@ -23,11 +25,11 @@ public class UserEO {
 
     private String deleted;
 
-    private String createdBy;
+    private Long createdBy;
 
     private Date createdAt;
 
-    private String updatedBy;
+    private Long updatedBy;
 
     private Date updatedAt;
 
@@ -37,6 +39,14 @@ public class UserEO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getGuid() {
+        return guid;
+    }
+
+    public void setGuid(String guid) {
+        this.guid = guid == null ? null : guid.trim();
     }
 
     public Long getTenantId() {
@@ -111,12 +121,12 @@ public class UserEO {
         this.deleted = deleted == null ? null : deleted.trim();
     }
 
-    public String getCreatedBy() {
+    public Long getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy == null ? null : createdBy.trim();
+    public void setCreatedBy(Long createdBy) {
+        this.createdBy = createdBy;
     }
 
     public Date getCreatedAt() {
@@ -127,12 +137,12 @@ public class UserEO {
         this.createdAt = createdAt;
     }
 
-    public String getUpdatedBy() {
+    public Long getUpdatedBy() {
         return updatedBy;
     }
 
-    public void setUpdatedBy(String updatedBy) {
-        this.updatedBy = updatedBy == null ? null : updatedBy.trim();
+    public void setUpdatedBy(Long updatedBy) {
+        this.updatedBy = updatedBy;
     }
 
     public Date getUpdatedAt() {

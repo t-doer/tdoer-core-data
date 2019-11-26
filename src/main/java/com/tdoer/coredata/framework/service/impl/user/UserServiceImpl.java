@@ -18,7 +18,7 @@
 
 package com.tdoer.coredata.framework.service.impl.user;
 
-import com.tdoer.coredata.framework.eo.tenant.UserEO;
+import com.tdoer.coredata.framework.eo.user.UserEO;
 import com.tdoer.coredata.framework.mapper.user.UserMapper;
 import com.tdoer.coredata.framework.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +43,10 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserEO selectByTenantIdAndAccount(Long tenantId, String account) {
         return userMapper.selectByTenantIdAndAccount(tenantId,account);
+    }
+
+    @Override
+    public UserEO selectByTenantIdAndGuid(Long tenantId, String guid) {
+        return userMapper.selectByTenantIdAndGuid(tenantId,guid);
     }
 }

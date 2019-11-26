@@ -20,6 +20,13 @@
         select
         <include refid="Base_Column_List"/>
         from user
-        where tenant_id = #{tenantId,jdbcType=BIGINT} and account = #{account,jdbcType=VARCHAR}
+        where TENANT_ID = #{tenantId,jdbcType=BIGINT} and ACCOUNT = #{account,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByTenantIdAndGuid" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where TENANT_ID = #{tenantId,jdbcType=BIGINT} and GUID = #{guid,jdbcType=VARCHAR}
     </select>
 </mapper>

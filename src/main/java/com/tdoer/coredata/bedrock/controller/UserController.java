@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @create 2019/11/5
  * @description
  */
-@RequestMapping("/auth")
+@RequestMapping("/user")
 @RestController
 @Slf4j
 @Api(tags = "服务端用户接口")
@@ -43,15 +43,19 @@ public class UserController {
     @Autowired
     UserBizz userBizz;
 
-    @GetMapping({"/buser/{tenantId}/{account}"})
-    GenericResponseData<BaseUser> bFindByAccount(@PathVariable("tenantId") Long tenantId,
-                                                 @PathVariable("account") String account) {
+    @GetMapping({"/{tenantId}/account/{account}"})
+    GenericResponseData<BaseUser> findByAccount(@PathVariable("tenantId") Long tenantId,
+                                                @PathVariable("account") String account) {
         return new GenericResponseData<>(userBizz.findByAccount(tenantId, account));
     }
 
-    @GetMapping({"/cuser/{tenantId}/{account}"})
-    GenericResponseData<BaseUser> cFindByAccount(@PathVariable("tenantId") Long tenantId,
-                                                 @PathVariable("account") String account) {
-        return null;
+    @GetMapping({"/{tenantId}/guid/{guid}"})
+    GenericResponseData<BaseUser> findByGuid(@PathVariable("tenantId") Long tenantId, @PathVariable("guid") String guid) {
+        return new GenericResponseData<>(userBizz.findByGuid(tenantId, guid));
+    }
+
+    @GetMapping({"/{tenantId}/id/{userId}"})
+    GenericResponseData<BaseUser> findById(@PathVariable("tenantId") Long tenantId, @PathVariable("userId") Long userId) {
+        return new GenericResponseData<>(userBizz.findById(userId));
     }
 }

@@ -18,7 +18,7 @@
 
 package com.tdoer.coredata.framework.mapper.user;
 
-import com.tdoer.coredata.framework.eo.tenant.UserEO;
+import com.tdoer.coredata.framework.eo.user.UserEO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -37,4 +37,7 @@ public interface UserMapper {
     int updateByPrimaryKey(UserEO record);
 
     UserEO selectByTenantIdAndAccount(@Param("tenantId") Long tenantId,@Param("account") String account);
+
+    UserEO selectByTenantIdAndGuid(@Param("tenantId") Long tenantId,@Param("guid") String guid);
+    
 }
